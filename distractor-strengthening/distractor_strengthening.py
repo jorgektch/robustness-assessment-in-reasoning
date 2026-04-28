@@ -1,6 +1,8 @@
 import os
+import json
 from google import genai
 from dotenv import load_dotenv
+from base_attack import Attack
 
 load_dotenv(dotenv_path="../.env")
 api_key = os.getenv("GEMINI_API_KEY")
@@ -10,38 +12,69 @@ if not api_key:
 
 client = genai.Client(api_key=api_key)
 
-class DistractorStrengthening:
+class DistractorStrengthening(Attack):
     def apply(self, example):
         new_example = example.copy()
         contexto = new_example.get("context", "")
         pregunta = new_example.get("question", "")
         opciones_originales = new_example.get("options", [])
         respuesta_correcta = new_example.get("label", "")
-        
+
         prompt = f"""
         Actúa como un creador de exámenes engañosos.
         Contexto: {contexto}
         Pregunta: {pregunta}
         Opciones actuales: {opciones_originales}
         Respuesta correcta: {respuesta_correcta}
+
+        Reescribe las opciones incorrectas para que sean semánticamente cercanas al contexto
+        (más plausibles), pero que sigan siendo incorrectas. No cambies la opción correcta.
         
-        Reescribe las opciones incorrectas para que sean semánticamente cercanas al contexto (más plausibles), pero que sigan siendo incorrectas. No cambies la opción correcta.
-        Devuélveme SOLO una lista de Python válida (ejemplo: ["A: falsa1", "B: correcta", "C: falsa2"]) con las nuevas opciones. No agregues comillas triples de markdown, ni explicaciones extra.
+        IMPORTANTE: Devuélveme SOLO un JSON array válido.
+        Sin markdown, sin comillas triples, sin explicaciones.
+        Ejemplo exacto del formato esperado: ["A: texto", "B: texto", "C: texto", "D: texto"]
         """
-        
+
         try:
             respuesta_ia = client.models.generate_content(
                 model='gemini-2.5-flash',
                 contents=prompt
             )
-            texto_limpio = respuesta_ia.text.strip().strip('```python').strip('```json').strip('```').strip()
-            new_example["options"] = eval(texto_limpio) 
+            texto_limpio = respuesta_ia.text.strip()
+            
+            if "```" in texto_limpio:
+                texto_limpio = texto_limpio.split("```")[1]
+                if texto_limpio.startswith(("json", "python")):
+                    texto_limpio = texto_limpio.split("\n", 1)[1]
+            
+            nuevas_opciones = json.loads(texto_limpio)
+            
+            if len(nuevas_opciones) != len(opciones_originales):
+                raise ValueError(
+                    f"El modelo devolvió {len(nuevas_opciones)} opciones "
+                    f"pero se esperaban {len(opciones_originales)}"
+                )
+
+            new_example["options"] = nuevas_opciones
             new_example["metadata"] = {
                 "attack": "distractor_strengthening",
                 "intensity": "medium"
             }
+
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"  [WARN] Pregunta {new_example['id']}: error de parsing — {e}")
+            new_example["metadata"] = {
+                "attack": "distractor_strengthening",
+                "intensity": "medium",
+                "error": str(e)
+            }
+
         except Exception as e:
-            print(f"Error procesando la pregunta {new_example['id']}: {e}")
-            pass 
-            
+            print(f"  [ERROR] Pregunta {new_example['id']}: error de API — {e}")
+            new_example["metadata"] = {
+                "attack": "distractor_strengthening",
+                "intensity": "medium",
+                "error": str(e)
+            }
+
         return new_example
