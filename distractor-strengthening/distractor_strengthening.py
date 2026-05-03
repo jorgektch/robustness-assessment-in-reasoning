@@ -1,4 +1,5 @@
 import os
+import re
 import json
 from google import genai
 from dotenv import load_dotenv
@@ -35,6 +36,10 @@ class DistractorStrengthening(Attack):
         Ejemplo exacto del formato esperado: ["A: texto", "B: texto", "C: texto", "D: texto"]
         """
 
+        metadata_actual = new_example.get("metadata", {})
+        ataques_previos = metadata_actual.get("attacks", [])
+        ataques_previos.append("distractor_strengthening")
+
         try:
             respuesta_ia = client.models.generate_content(
                 model='gemini-2.5-flash',
@@ -46,6 +51,10 @@ class DistractorStrengthening(Attack):
                 texto_limpio = texto_limpio.split("```")[1]
                 if texto_limpio.startswith(("json", "python")):
                     texto_limpio = texto_limpio.split("\n", 1)[1]
+
+            match = re.search(r'\[.*?\]', texto_limpio, re.DOTALL)
+            if match:
+                texto_limpio = match.group()
             
             nuevas_opciones = json.loads(texto_limpio)
             
@@ -57,14 +66,14 @@ class DistractorStrengthening(Attack):
 
             new_example["options"] = nuevas_opciones
             new_example["metadata"] = {
-                "attack": "distractor_strengthening",
+                "attacks": ataques_previos,
                 "intensity": "medium"
             }
 
         except (json.JSONDecodeError, ValueError) as e:
             print(f"  [WARN] Pregunta {new_example['id']}: error de parsing — {e}")
             new_example["metadata"] = {
-                "attack": "distractor_strengthening",
+                "attacks": ataques_previos,
                 "intensity": "medium",
                 "error": str(e)
             }
@@ -72,7 +81,7 @@ class DistractorStrengthening(Attack):
         except Exception as e:
             print(f"  [ERROR] Pregunta {new_example['id']}: error de API — {e}")
             new_example["metadata"] = {
-                "attack": "distractor_strengthening",
+                "attacks": ataques_previos,
                 "intensity": "medium",
                 "error": str(e)
             }
