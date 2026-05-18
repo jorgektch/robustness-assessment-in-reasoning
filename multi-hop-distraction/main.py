@@ -80,39 +80,6 @@ def guardar_dataset(dataset, output_path):
         return False
 
 
-def generar_reporte(stats_por_nivel, output_dir, timestamp):
-    reporte_path = os.path.join(output_dir, f"reporte_multihop_{timestamp}.txt")
-    
-    try:
-        with open(reporte_path, 'w', encoding='utf-8') as f:
-            f.write("="*70 + "\n")
-            f.write("REPORTE DE ATAQUE: MULTI-HOP DISTRACTION\n")
-            f.write("="*70 + "\n\n")
-            f.write(f"Fecha y hora: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write(f"Timestamp: {timestamp}\n\n")
-            
-            for nivel, stats in stats_por_nivel.items():
-                f.write(f"\n{'='*70}\n")
-                f.write(f"NIVEL: {nivel.upper()}\n")
-                f.write(f"{'='*70}\n")
-                f.write(f"Total de ejemplos:        {stats['total']}\n")
-                f.write(f"Procesados exitosamente:  {stats['exitosos']} ({stats['exitosos']/stats['total']*100:.1f}%)\n")
-                f.write(f"Con warnings:             {stats['warnings']} ({stats['warnings']/stats['total']*100:.1f}%)\n")
-                f.write(f"Con errores:              {stats['errores']} ({stats['errores']/stats['total']*100:.1f}%)\n")
-            
-            f.write("\n" + "="*70 + "\n")
-            f.write("RESUMEN GENERAL\n")
-            f.write("="*70 + "\n")
-            total_general = sum(s['total'] for s in stats_por_nivel.values())
-            exitosos_general = sum(s['exitosos'] for s in stats_por_nivel.values())
-            f.write(f"Total de ejemplos procesados: {total_general}\n")
-            f.write(f"Tasa de éxito general:        {exitosos_general/total_general*100:.1f}%\n")
-        
-        print(f"\nReporte guardado en: {reporte_path}")
-    except Exception as e:
-        print(f"\nNo se pudo generar el reporte: {e}")
-
-
 def main():
     print("="*70)
     print("MULTI-HOP DISTRACTION ATTACK")
@@ -154,11 +121,9 @@ def main():
         print(f"Directorio creado: {output_dir}")
     
     niveles = ["low", "medium", "high"]
-    stats_por_nivel = {}
     
     for nivel in niveles:
         dataset_atacado, stats = aplicar_ataque(dataset, nivel)
-        stats_por_nivel[nivel] = stats
         
         output_filename = f"{dataset_name}_multihop_{nivel}_{timestamp}.json"
         output_path = os.path.join(output_dir, output_filename)
@@ -173,8 +138,6 @@ def main():
         print(f"Errores:   {stats['errores']}")
         print(f"Tasa de éxito: {stats['exitosos']/stats['total']*100:.1f}%")
     
-    generar_reporte(stats_por_nivel, output_dir, timestamp)
-    
     print("\n" + "="*70)
     print("PROCESO COMPLETADO")
     print("="*70)
@@ -182,7 +145,6 @@ def main():
     print(f"   - {dataset_name}_multihop_low_{timestamp}.json")
     print(f"   - {dataset_name}_multihop_medium_{timestamp}.json")
     print(f"   - {dataset_name}_multihop_high_{timestamp}.json")
-    print("\nReporte detallado: reporte_multihop_{}.txt".format(timestamp))
     print("\n" + "="*70)
 
 
