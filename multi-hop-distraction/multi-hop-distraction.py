@@ -22,8 +22,6 @@ client = genai.Client(api_key=api_key)
 
 
 class MultiHopDistraction(Attack):
-    """Ataque que añade pasos de razonamiento válidos pero irrelevantes al contexto."""
-    
     def __init__(self, intensity="medium"):
         self.intensity = intensity
         self.num_distractions = self._get_num_distractions(intensity)
@@ -88,9 +86,6 @@ Genera {self.num_distractions} oraciones:
             
             distracciones = json.loads(texto_limpio)
             
-            if len(distracciones) != self.num_distractions:
-                print(f"  [WARN] Ejemplo {new_example['id']}: Se esperaban {self.num_distractions} distracciones pero se generaron {len(distracciones)}")
-            
             nuevo_contexto = self._insert_distractions(contexto, distracciones)
             new_example["context"] = nuevo_contexto
             
@@ -102,12 +97,9 @@ Genera {self.num_distractions} oraciones:
             }
             
             if not self._validate_example(example, new_example):
-                print(f"  [WARN] Ejemplo {new_example['id']}: Falló la validación")
                 new_example["metadata"]["validation_warning"] = True
         
         except json.JSONDecodeError as e:
-            print(f"  [ERROR] Ejemplo {new_example['id']}: Error de parsing JSON - {e}")
-            print(f"  Respuesta recibida: {texto_limpio[:200]}...")
             new_example["metadata"] = {
                 "attack": "multi_hop_distraction",
                 "intensity": self.intensity,
@@ -115,7 +107,6 @@ Genera {self.num_distractions} oraciones:
                 "error_details": str(e)
             }
         except Exception as e:
-            print(f"  [ERROR] Ejemplo {new_example['id']}: Error de API - {e}")
             new_example["metadata"] = {
                 "attack": "multi_hop_distraction",
                 "intensity": self.intensity,
@@ -157,7 +148,6 @@ Genera {self.num_distractions} oraciones:
                 return False
             return True
         except Exception as e:
-            print(f"  [ERROR] Error en validación: {e}")
             return False
 
 

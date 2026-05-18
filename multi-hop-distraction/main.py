@@ -29,88 +29,46 @@ def validar_archivo(filepath):
 
 
 def aplicar_ataque(dataset, intensity):
-    print(f"\n{'='*70}")
-    print(f"APLICANDO ATAQUE: MULTI-HOP DISTRACTION - Nivel: {intensity.upper()}")
-    print(f"{'='*70}")
-    
     attack = MultiHopDistraction(intensity=intensity)
     dataset_atacado = []
-    stats = {"total": len(dataset), "exitosos": 0, "errores": 0, "warnings": 0}
     
-    for i, ejemplo in enumerate(dataset, 1):
-        print(f"\n[{i}/{len(dataset)}] Procesando ejemplo {ejemplo.get('id', '???')}...")
-        
+    for ejemplo in dataset:
         try:
             ejemplo_atacado = attack.apply(ejemplo)
             dataset_atacado.append(ejemplo_atacado)
-            
-            metadata = ejemplo_atacado.get("metadata", {})
-            if "error" in metadata:
-                stats["errores"] += 1
-                print(f"  [ERROR] Error: {metadata.get('error_details', 'Unknown')}")
-            elif metadata.get("validation_warning"):
-                stats["warnings"] += 1
-                print(f"  [WARNING] Warning: Validación falló")
-            else:
-                stats["exitosos"] += 1
-                print(f"  [OK] Éxito: {metadata.get('num_distractions', 0)} distracciones añadidas")
         except Exception as e:
-            print(f"  [ERROR] Error crítico: {e}")
-            stats["errores"] += 1
             ejemplo["metadata"] = {"attack": "multi_hop_distraction", "intensity": intensity, 
                                    "error": "critical_error", "error_details": str(e)}
             dataset_atacado.append(ejemplo)
     
-    return dataset_atacado, stats
+    return dataset_atacado
 
 
 def guardar_dataset(dataset, output_path):
-    try:
-        output_dir = os.path.dirname(output_path)
-        if output_dir and not os.path.exists(output_dir):
-            os.makedirs(output_dir)
-        
-        with open(output_path, 'w', encoding='utf-8') as f:
-            json.dump(dataset, f, indent=2, ensure_ascii=False)
-        
-        print(f"\nDataset guardado en: {output_path}")
-        return True
-    except Exception as e:
-        print(f"\nError al guardar dataset: {e}")
-        return False
+    output_dir = os.path.dirname(output_path)
+    if output_dir and not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(dataset, f, indent=2, ensure_ascii=False)
 
 
 def main():
-    print("="*70)
-    print("MULTI-HOP DISTRACTION ATTACK")
-    print("="*70)
-    
     if len(sys.argv) > 1:
         if sys.argv[1] in ['--help', '-h']:
             print("Uso: python main.py [dataset.json]")
-            print("Sin argumentos usa: ../dataset/dataset_base.json")
             sys.exit(0)
         input_dataset = sys.argv[1]
-        print(f"\nUsando dataset especificado: {input_dataset}")
     else:
         input_dataset = "../dataset/dataset_base.json"
-        print(f"\nUsando dataset por defecto: {input_dataset}")
     
-    print("\nValidando dataset...")
     valido, mensaje = validar_archivo(input_dataset)
-    
     if not valido:
         print(f"ERROR: {mensaje}")
-        print("\nUso correcto:")
-        print("  python main.py [ruta_al_dataset.json]")
         sys.exit(1)
-    
-    print("Dataset válido")
     
     with open(input_dataset, 'r', encoding='utf-8') as f:
         dataset = json.load(f)
-    
-    print(f"Dataset cargado: {len(dataset)} ejemplos")
     
     dataset_name = os.path.splitext(os.path.basename(input_dataset))[0]
     timestamp = datetime.now().strftime("%d%m%Y%H%M")
@@ -118,34 +76,12 @@ def main():
     
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-        print(f"Directorio creado: {output_dir}")
     
-    niveles = ["low", "medium", "high"]
-    
-    for nivel in niveles:
-        dataset_atacado, stats = aplicar_ataque(dataset, nivel)
-        
+    for nivel in ["low", "medium", "high"]:
+        dataset_atacado = aplicar_ataque(dataset, nivel)
         output_filename = f"{dataset_name}_multihop_{nivel}_{timestamp}.json"
         output_path = os.path.join(output_dir, output_filename)
         guardar_dataset(dataset_atacado, output_path)
-        
-        print(f"\n{'='*70}")
-        print(f"RESUMEN - Nivel {nivel.upper()}")
-        print(f"{'='*70}")
-        print(f"Total:     {stats['total']}")
-        print(f"Exitosos:  {stats['exitosos']}")
-        print(f"Warnings:  {stats['warnings']}")
-        print(f"Errores:   {stats['errores']}")
-        print(f"Tasa de éxito: {stats['exitosos']/stats['total']*100:.1f}%")
-    
-    print("\n" + "="*70)
-    print("PROCESO COMPLETADO")
-    print("="*70)
-    print(f"\nSe generaron 3 datasets atacados en: {output_dir}")
-    print(f"   - {dataset_name}_multihop_low_{timestamp}.json")
-    print(f"   - {dataset_name}_multihop_medium_{timestamp}.json")
-    print(f"   - {dataset_name}_multihop_high_{timestamp}.json")
-    print("\n" + "="*70)
 
 
 if __name__ == "__main__":
