@@ -1,0 +1,170 @@
+[
+    {
+        "id": "001",
+        "task": "mcq",
+        "context": "Durante la Revolución Industrial, la máquina de vapor no solo transformó la manufactura, sino que también redefinió el transporte. A pesar de su enorme impacto inicial aumentando la producción en las fábricas textiles de las ciudades, fue el posterior desarrollo de las locomotoras de vapor lo que realmente logró conectar las economías regionales aisladas.",
+        "question": "¿Cuál fue el impacto más significativo de la máquina de vapor a nivel regional según el texto?",
+        "options": [
+            "A: Aumentó drásticamente la producción en las fábricas textiles urbanas.",
+            "B: Facilitó la integración y conexión económica a través del transporte.",
+            "C: Reemplazó por completo la mano de obra humana en las zonas rurales.",
+            "D: Inició la revolución tecnológica en la navegación marítima europea."
+        ],
+        "label": "B",
+        "rationale": "Aunque la opción A es cierta según el texto, la pregunta pide específicamente el impacto 'a nivel regional', el cual se logró mediante las locomotoras conectando economías aisladas."
+    },
+    {
+        "id": "002",
+        "task": "mcq",
+        "context": "El reglamento de la biblioteca es claro: si un estudiante devuelve un libro con más de tres días de retraso, se le suspenderá la cuenta por un mes. María devolvió su libro de Historia el viernes, cuando debía entregarlo el lunes de esa misma semana. Sin embargo, su cuenta no fue suspendida.",
+        "question": "¿Qué conclusión lógica se puede extraer del texto sobre la situación de María?",
+        "options": [
+            "A: La biblioteca olvidó registrar la devolución del libro de María.",
+            "B: El libro de Historia no está sujeto a las reglas de suspensión.",
+            "C: El retraso de María no superó el límite de tres días establecido.",
+            "D: Existe alguna excepción o factor no mencionado que evitó su suspensión."
+        ],
+        "label": "D",
+        "rationale": "Del lunes al viernes hay cuatro días de retraso, por lo que cumplía la condición para ser suspendida. Al no ser suspendida, la lógica dicta que intervino un factor externo o excepción que el texto no detalla."
+    },
+    {
+        "id": "003",
+        "task": "mcq",
+        "context": "Pedro estudió 8 horas para el examen de matemáticas. Su compañero Juan estudió solo 3 horas. Cuando recibieron los resultados, Juan obtuvo 95 puntos mientras que Pedro obtuvo 88 puntos.",
+        "question": "¿Qué se puede concluir directamente del texto?",
+        "options": [
+            "A: Estudiar más horas garantiza mejores resultados.",
+            "B: Juan es más inteligente que Pedro.",
+            "C: Juan obtuvo una calificación más alta que Pedro.",
+            "D: El método de estudio es más importante que las horas dedicadas."
+        ],
+        "label": "C",
+        "rationale": "El texto solo afirma hechos objetivos sobre las calificaciones. No se puede concluir sobre inteligencia, efectividad del estudio o relaciones causales, solo el resultado numérico."
+    },
+    {
+        "id": "004",
+        "task": "mcq",
+        "context": "En una carrera participaron 5 corredores. Ana llegó antes que Carlos pero después que Beatriz. David llegó último y Elena llegó en tercer lugar.",
+        "question": "¿En qué posición llegó Ana?",
+        "options": [
+            "A: Primera",
+            "B: Segunda",
+            "C: Cuarta",
+            "D: No hay suficiente información"
+        ],
+        "label": "C",
+        "rationale": "Si Beatriz está antes que Ana, y Elena está en tercer lugar, y Ana está antes que Carlos, la secuencia es: Beatriz (1°), Elena (3°), Ana (4°), Carlos (?), David (5°). Ana está en cuarta posición."
+    },
+    {
+        "id": "005",
+        "task": "mcq",
+        "context": "La empresa implementó una nueva política: todos los empleados deben llegar antes de las 9:00 AM o trabajar hasta las 7:00 PM. Carlos siempre llega a las 8:30 AM y sale a las 5:00 PM todos los días.",
+        "question": "¿Carlos cumple con la política de la empresa?",
+        "options": [
+            "A: No, porque no trabaja hasta las 7:00 PM.",
+            "B: Sí, porque llega antes de las 9:00 AM.",
+            "C: No hay suficiente información.",
+            "D: Solo los lunes y viernes."
+        ],
+        "label": "B",
+        "rationale": "La política usa 'O' (OR lógico), no 'Y' (AND). Carlos cumple una de las dos condiciones (llegar antes de 9:00 AM), por lo tanto cumple la política."
+    },
+    {
+        "id": "006",
+        "task": "mcq",
+        "context": "En el experimento, se observó que las plantas con fertilizante crecieron 15 cm en promedio, mientras que las plantas sin fertilizante crecieron 10 cm. Todas las plantas recibieron la misma cantidad de agua y luz solar.",
+        "question": "¿Qué conclusión está mejor soportada por los datos?",
+        "options": [
+            "A: El fertilizante es esencial para el crecimiento de las plantas.",
+            "B: Las plantas sin fertilizante no pueden crecer adecuadamente.",
+            "C: Las plantas con fertilizante crecieron más en promedio que las que no lo recibieron.",
+            "D: El agua y la luz solar no afectan el crecimiento de las plantas."
+        ],
+        "label": "C",
+        "rationale": "La única conclusión directamente soportada por los datos es la diferencia observada. No se puede afirmar que el fertilizante sea esencial o que las plantas sin él no crezcan adecuadamente, solo que hubo una diferencia de 5 cm en promedio."
+    },
+    {
+        "id": "007",
+        "task": "mcq",
+        "context": "Todos los mamíferos tienen sangre caliente. Las ballenas son mamíferos. Por lo tanto, las ballenas tienen sangre caliente.",
+        "question": "¿Qué tipo de razonamiento se está utilizando?",
+        "options": [
+            "A: Razonamiento inductivo basado en observaciones.",
+            "B: Razonamiento deductivo basado en premisas generales.",
+            "C: Razonamiento analógico por similitud.",
+            "D: Razonamiento abductivo por la mejor explicación."
+        ],
+        "label": "B",
+        "rationale": "Este es un ejemplo clásico de silogismo deductivo: premisa mayor (todos los mamíferos...), premisa menor (las ballenas son...), conclusión lógica necesaria."
+    },
+    {
+        "id": "008",
+        "task": "mcq",
+        "context": "Si llueve, entonces el suelo estará mojado. El suelo está mojado. Por lo tanto, llovió.",
+        "question": "¿Este razonamiento es válido?",
+        "options": [
+            "A: Sí, es un razonamiento deductivo válido.",
+            "B: No, comete la falacia de afirmar el consecuente.",
+            "C: Sí, porque la evidencia apoya la conclusión.",
+            "D: No, porque falta información sobre otras causas."
+        ],
+        "label": "B",
+        "rationale": "Este es un ejemplo de la falacia lógica 'afirmar el consecuente'. Aunque lluvia causa suelo mojado, suelo mojado no implica necesariamente lluvia (podría ser una manguera, riego, etc.)."
+    },
+    {
+        "id": "009",
+        "task": "mcq",
+        "context": "En una encuesta a 1000 personas, el 60% dijo preferir el producto A sobre el producto B. El margen de error de la encuesta es de ±3%.",
+        "question": "¿Qué afirmación es la más precisa basándose en estos datos?",
+        "options": [
+            "A: Exactamente 600 personas prefieren el producto A.",
+            "B: Entre 570 y 630 personas prefieren el producto A.",
+            "C: La mayoría de la población prefiere el producto A.",
+            "D: El producto A es objetivamente mejor que el producto B."
+        ],
+        "label": "B",
+        "rationale": "Con 60% ±3%, el rango real está entre 57% y 63%. En una muestra de 1000, esto equivale a 570-630 personas. No podemos generalizar a 'toda la población' ni hacer juicios de valor sobre calidad."
+    },
+    {
+        "id": "010",
+        "task": "mcq",
+        "context": "María dice: 'Si estudio mucho, aprobaré el examen'. María no aprobó el examen.",
+        "question": "¿Qué se puede concluir lógicamente?",
+        "options": [
+            "A: María no estudió mucho.",
+            "B: María estudió pero el examen era muy difícil.",
+            "C: El estudio no garantiza aprobar.",
+            "D: No se puede determinar si María estudió o no."
+        ],
+        "label": "A",
+        "rationale": "Usando modus tollens: Si P entonces Q. No Q. Por lo tanto, no P. Si María hubiera estudiado mucho (P), habría aprobado (Q). Como no aprobó (no Q), no estudió mucho (no P)."
+    },
+    {
+        "id": "011",
+        "task": "mcq",
+        "context": "Un estudio mostró que las personas que desayunan regularmente tienen mejor rendimiento académico. Los investigadores concluyeron que desayunar causa mejor rendimiento académico.",
+        "question": "¿Cuál es el problema principal con esta conclusión?",
+        "options": [
+            "A: El estudio no tiene suficientes participantes.",
+            "B: Confunde correlación con causalidad.",
+            "C: No considera otros tipos de comidas.",
+            "D: El rendimiento académico es subjetivo."
+        ],
+        "label": "B",
+        "rationale": "Este es un error clásico de investigación: observar que dos variables están relacionadas (correlación) no significa que una cause la otra. Puede haber variables ocultas (ej: nivel socioeconómico) que afecten ambas."
+    },
+    {
+        "id": "012",
+        "task": "mcq",
+        "context": "En un grupo de 30 estudiantes, 20 estudian inglés y 15 estudian francés. Todos los que estudian francés también estudian inglés.",
+        "question": "¿Cuántos estudiantes estudian solo inglés?",
+        "options": [
+            "A: 5 estudiantes",
+            "B: 10 estudiantes",
+            "C: 15 estudiantes",
+            "D: No se puede determinar"
+        ],
+        "label": "A",
+        "rationale": "Si todos los 15 que estudian francés también estudian inglés, entonces están incluidos en los 20 que estudian inglés. Por lo tanto, 20 - 15 = 5 estudiantes estudian solo inglés."
+    }
+]
