@@ -11,28 +11,16 @@ load_dotenv(dotenv_path="../.env")
 api_key = os.getenv("GEMINI_API_KEY")
 
 if not api_key:
-    print("ERROR: No se encontró la API Key. Revisa tu archivo .env")
-    print("Para obtener tu API Key:")
-    print("1. Ve a: https://aistudio.google.com/app/apikey")
-    print("2. Crea una API Key")
-    print("3. Agrégala al archivo .env")
+    print("ERROR: No se encontró la API Key")
     exit()
 
 client = genai.Client(api_key=api_key)
 
 
 class MultiHopDistraction(Attack):
-    def __init__(self, intensity="medium"):
-        self.intensity = intensity
-        self.num_distractions = self._get_num_distractions(intensity)
-    
-    def _get_num_distractions(self, intensity):
-        if intensity == "low":
-            return random.randint(1, 2)
-        elif intensity == "medium":
-            return random.randint(2, 3)
-        else:
-            return random.randint(3, 4)
+    def __init__(self):
+        self.intensity = "medium"
+        self.num_distractions = random.randint(2, 3)
     
     def apply(self, example):
         new_example = example.copy()
@@ -59,10 +47,7 @@ REQUISITOS:
 5. Requieren RAZONAMIENTO MULTI-PASO para descartarlas
 6. NO contradecir el contexto ni cambiar la respuesta correcta
 
-INTENSIDAD: {self.intensity}
-- low: Sutiles, relativamente obvias que son irrelevantes
-- medium: Moderadas, requieren atención para descartarlas  
-- high: Complejas con datos específicos, muy difíciles de identificar como irrelevantes
+INTENSIDAD: Moderada - requieren atención para descartarlas
 
 FORMATO: JSON array sin markdown ni explicaciones.
 Ejemplo: ["oración 1", "oración 2", "oración 3"]
@@ -72,7 +57,7 @@ Genera {self.num_distractions} oraciones:
 
         try:
             respuesta_ia = client.models.generate_content(
-                model='gemini-2.0-flash-exp',
+                model='gemini-2.5-flash',
                 contents=prompt
             )
             
@@ -149,40 +134,3 @@ Genera {self.num_distractions} oraciones:
             return True
         except Exception as e:
             return False
-
-
-def test_attack():
-    print("=" * 70)
-    print("PRUEBA DEL ATAQUE MULTI-HOP DISTRACTION")
-    print("=" * 70)
-    
-    test_example = {
-        "id": "test_001",
-        "task": "mcq",
-        "context": "Pedro estudió 5 horas para el examen de matemáticas. Obtuvo una calificación de 95 puntos.",
-        "question": "¿Cuántas horas estudió Pedro?",
-        "options": ["A: 3 horas", "B: 5 horas", "C: 7 horas", "D: No se menciona"],
-        "label": "B"
-    }
-    
-    print("\nEJEMPLO ORIGINAL:")
-    print(f"Context: {test_example['context']}")
-    print(f"Question: {test_example['question']}")
-    print(f"Label: {test_example['label']}")
-    
-    for intensity in ["low", "medium", "high"]:
-        print(f"\n{'-' * 70}")
-        print(f"PROBANDO INTENSIDAD: {intensity}")
-        print(f"{'-' * 70}")
-        
-        attack = MultiHopDistraction(intensity=intensity)
-        attacked_example = attack.apply(test_example)
-        
-        print(f"\nContext atacado:")
-        print(attacked_example['context'])
-        print(f"\nMetadata:")
-        print(json.dumps(attacked_example['metadata'], indent=2, ensure_ascii=False))
-    
-    print("\n" + "=" * 70)
-    print("PRUEBA COMPLETADA")
-    print("=" * 70)

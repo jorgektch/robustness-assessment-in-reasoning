@@ -10,7 +10,7 @@ def validar_archivo(filepath):
         return False, f"El archivo no existe: {filepath}"
     
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, 'r', encoding='utf-8-sig') as f:
             dataset = json.load(f)
         
         if not isinstance(dataset, list) or len(dataset) == 0:
@@ -28,8 +28,8 @@ def validar_archivo(filepath):
         return False, f"Error inesperado: {e}"
 
 
-def aplicar_ataque(dataset, intensity):
-    attack = MultiHopDistraction(intensity=intensity)
+def aplicar_ataque(dataset):
+    attack = MultiHopDistraction()
     dataset_atacado = []
     
     for ejemplo in dataset:
@@ -37,7 +37,7 @@ def aplicar_ataque(dataset, intensity):
             ejemplo_atacado = attack.apply(ejemplo)
             dataset_atacado.append(ejemplo_atacado)
         except Exception as e:
-            ejemplo["metadata"] = {"attack": "multi_hop_distraction", "intensity": intensity, 
+            ejemplo["metadata"] = {"attack": "multi_hop_distraction", "intensity": "medium", 
                                    "error": "critical_error", "error_details": str(e)}
             dataset_atacado.append(ejemplo)
     
@@ -67,7 +67,7 @@ def main():
         print(f"ERROR: {mensaje}")
         sys.exit(1)
     
-    with open(input_dataset, 'r', encoding='utf-8') as f:
+    with open(input_dataset, 'r', encoding='utf-8-sig') as f:
         dataset = json.load(f)
     
     dataset_name = os.path.splitext(os.path.basename(input_dataset))[0]
@@ -77,11 +77,12 @@ def main():
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     
-    for nivel in ["low", "medium", "high"]:
-        dataset_atacado = aplicar_ataque(dataset, nivel)
-        output_filename = f"{dataset_name}_multihop_{nivel}_{timestamp}.json"
-        output_path = os.path.join(output_dir, output_filename)
-        guardar_dataset(dataset_atacado, output_path)
+    print(f"Procesando dataset: {input_dataset}")
+    dataset_atacado = aplicar_ataque(dataset)
+    output_filename = f"{dataset_name}_multihop_{timestamp}.json"
+    output_path = os.path.join(output_dir, output_filename)
+    guardar_dataset(dataset_atacado, output_path)
+    print(f"Dataset atacado guardado en: {output_path}")
 
 
 if __name__ == "__main__":
