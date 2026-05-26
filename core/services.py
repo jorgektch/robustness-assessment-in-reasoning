@@ -18,13 +18,24 @@ class GeminiAPI:
         genai.configure(api_key=self.api_key)
         self.model = genai.GenerativeModel('gemini-2.5-flash')
 
-    def query(self, prompt: str) -> str:
-        try:
-            response = self.model.generate_content(prompt)
-            return response.text
-        except Exception as e:
-            print(f"An error occurred during Gemini API call: {e}")
-            return ""
+    def query(self, prompt: str, retries: int = 5) -> str:
+        import re
+        for attempt in range(retries):
+            try:
+                response = self.model.generate_content(prompt)
+                return response.text
+            except Exception as e:
+                error_msg = str(e)
+                if '429' in error_msg:
+                    match = re.search(r'seconds:\s*(\d+)', error_msg)
+                    wait_seconds = int(match.group(1)) + 3 if match else 65
+                    print(f"  [Rate limit] Esperando {wait_seconds}s... (intento {attempt + 1}/{retries})")
+                    time.sleep(wait_seconds)
+                else:
+                    print(f"  [Error] {e}")
+                    return ""
+        print("  [Error] Se agotaron los reintentos.")
+        return ""
 
 
 class TaskResolver:

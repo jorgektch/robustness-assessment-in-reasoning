@@ -3,7 +3,7 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from core.base_atack import BaseAttack
+from core.base_attack import BaseAttack
 from core.models import VerbalTask, IntensityLevel
 from core.services import GeminiAPI
 
@@ -56,7 +56,7 @@ class IrrelevantSentenceInjection(BaseAttack):
         new_context = self.api.query(prompt)
 
         if new_context:
-            attacked_task = task.copy(deep=True)
+            attacked_task = task.model_copy(deep=True)
             attacked_task.context = new_context
             attacked_task.metadata["attack"] = "IrrelevantSentenceInjection"
             attacked_task.metadata["intensity"] = intensity.name

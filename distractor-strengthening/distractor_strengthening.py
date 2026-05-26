@@ -1,89 +1,84 @@
-import os
-import re
 import json
-from google import genai
-from dotenv import load_dotenv
-from base_attack import Attack
+import re
+import sys
+import os
 
-load_dotenv(dotenv_path="../.env")
-api_key = os.getenv("GEMINI_API_KEY")
-if not api_key:
-    print("ERROR: No se encontró la API Key. Revisa tu archivo .env")
-    exit()
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-client = genai.Client(api_key=api_key)
+from core.base_attack import BaseAttack
+from core.models import VerbalTask, IntensityLevel
+from core.services import GeminiAPI
 
-class DistractorStrengthening(Attack):
-    def apply(self, example):
-        new_example = example.copy()
-        contexto = new_example.get("context", "")
-        pregunta = new_example.get("question", "")
-        opciones_originales = new_example.get("options", [])
-        respuesta_correcta = new_example.get("label", "")
+
+class DistractorStrengthening(BaseAttack):
+    PROMPTS = {
+        IntensityLevel.LOW: """
+        Reescribe ligeramente las opciones incorrectas para que sean un poco más plausibles,
+        manteniéndolas claramente incorrectas.
+        """,
+        IntensityLevel.MEDIUM: """
+        Reescribe las opciones incorrectas para que sean semánticamente cercanas al contexto
+        (más plausibles), pero que sigan siendo incorrectas.
+        """,
+        IntensityLevel.HIGH: """
+        Reescribe las opciones incorrectas para que sean muy convincentes y difíciles de descartar,
+        usando terminología del contexto, pero sin volverlas correctas.
+        """,
+    }
+
+    def __init__(self, api: GeminiAPI):
+        self.api = api
+
+    def apply(self, task: VerbalTask, intensity: IntensityLevel) -> VerbalTask:
+        instruction = self.PROMPTS.get(intensity)
+        if not instruction:
+            return task
 
         prompt = f"""
         Actúa como un creador de exámenes engañosos.
-        Contexto: {contexto}
-        Pregunta: {pregunta}
-        Opciones actuales: {opciones_originales}
-        Respuesta correcta: {respuesta_correcta}
+        Contexto: {task.context}
+        Pregunta: {task.question}
+        Opciones actuales: {task.options}
+        Respuesta correcta: {task.label}
 
-        Reescribe las opciones incorrectas para que sean semánticamente cercanas al contexto
-        (más plausibles), pero que sigan siendo incorrectas. No cambies la opción correcta.
-        
+        {instruction}
+        No cambies la opción correcta.
+
         IMPORTANTE: Devuélveme SOLO un JSON array válido.
         Sin markdown, sin comillas triples, sin explicaciones.
-        Ejemplo exacto del formato esperado: ["A: texto", "B: texto", "C: texto", "D: texto"]
+        Ejemplo: ["A: texto", "B: texto", "C: texto", "D: texto"]
         """
 
-        metadata_actual = new_example.get("metadata", {})
-        ataques_previos = metadata_actual.get("attacks", [])
-        ataques_previos.append("distractor_strengthening")
+        attacked = task.model_copy(deep=True)
+        attacks = list(attacked.metadata.get("attacks", []))
+        attacks.append("distractor_strengthening")
 
         try:
-            respuesta_ia = client.models.generate_content(
-                model='gemini-2.5-flash',
-                contents=prompt
-            )
-            texto_limpio = respuesta_ia.text.strip()
-            
-            if "```" in texto_limpio:
-                texto_limpio = texto_limpio.split("```")[1]
-                if texto_limpio.startswith(("json", "python")):
-                    texto_limpio = texto_limpio.split("\n", 1)[1]
+            response = self.api.query(prompt).strip()
+            if "```" in response:
+                response = response.split("```")[1]
+                if response.startswith(("json", "python")):
+                    response = response.split("\n", 1)[1]
 
-            match = re.search(r'\[.*?\]', texto_limpio, re.DOTALL)
+            match = re.search(r"\[.*?\]", response, re.DOTALL)
             if match:
-                texto_limpio = match.group()
-            
-            nuevas_opciones = json.loads(texto_limpio)
-            
-            if len(nuevas_opciones) != len(opciones_originales):
+                response = match.group()
+
+            new_options = json.loads(response)
+            if len(new_options) != len(task.options):
                 raise ValueError(
-                    f"El modelo devolvió {len(nuevas_opciones)} opciones "
-                    f"pero se esperaban {len(opciones_originales)}"
+                    f"El modelo devolvió {len(new_options)} opciones; "
+                    f"se esperaban {len(task.options)}"
                 )
 
-            new_example["options"] = nuevas_opciones
-            new_example["metadata"] = {
-                "attacks": ataques_previos,
-                "intensity": "medium"
-            }
+            attacked.options = new_options
+            attacked.metadata["attacks"] = attacks
+            attacked.metadata["intensity"] = intensity.value
 
         except (json.JSONDecodeError, ValueError) as e:
-            print(f"  [WARN] Pregunta {new_example['id']}: error de parsing — {e}")
-            new_example["metadata"] = {
-                "attacks": ataques_previos,
-                "intensity": "medium",
-                "error": str(e)
-            }
+            print(f"  [WARN] Tarea {task.id}: error de parsing — {e}")
+            attacked.metadata["attacks"] = attacks
+            attacked.metadata["intensity"] = intensity.value
+            attacked.metadata["error"] = str(e)
 
-        except Exception as e:
-            print(f"  [ERROR] Pregunta {new_example['id']}: error de API — {e}")
-            new_example["metadata"] = {
-                "attacks": ataques_previos,
-                "intensity": "medium",
-                "error": str(e)
-            }
-
-        return new_example
+        return attacked

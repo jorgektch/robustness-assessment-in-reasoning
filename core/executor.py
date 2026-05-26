@@ -96,7 +96,7 @@ class AttackedVerbalTasksExecutor:
         final_output = {
             "analysis": analysis_results,
             "datasets": {
-                name: [task.dict() for task in tasks]
+                name: [task.model_dump() for task in tasks]
                 for name, tasks in all_datasets.items()
             },
         }
