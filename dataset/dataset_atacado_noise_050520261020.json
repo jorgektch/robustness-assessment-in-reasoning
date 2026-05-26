@@ -1,0 +1,40 @@
+[
+    {
+        "id": "001",
+        "task": "mcq",
+        "context": "Durante la Revolución Industrial, la máquina de vapor no solo transformó la manufactura, sino que también redefinió el transporte. A pesar de su enorme impacto inicial aumentando la producción en las fábricas textiles de las ciudades, fue el posterior desarrollo de las locomotoras de vapor lo que realmente logró conectar las economías regionales aisladas. No obstante, se rumoreaba que la integración económica completa fue un proceso mucho más lento y desigual de lo que los optimistas de la época pregonaban.",
+        "question": "¿Cuál fue el impacto más significativo de la máquina de vapor a nivel regional según el texto?",
+        "options": [
+            "A: Aumentó drásticamente la producción en las fábricas textiles urbanas. (incorrecta)",
+            "B: Facilitó la integración y conexión económica a través del transporte. (correcta)",
+            "C: Reemplazó por completo la mano de obra humana en las zonas rurales. (incorrecta)",
+            "D: Inició la revolución tecnológica en la navegación marítima europea. (incorrecta)"
+        ],
+        "label": "B",
+        "rationale": "Aunque la opción A es cierta según el texto, la pregunta pide específicamente el impacto 'a nivel regional', el cual se logró mediante las locomotoras conectando economías aisladas.",
+        "metadata": {
+            "attack": "contradictory_noise_injection",
+            "difficulty": "medium",
+            "injected_noise": "No obstante, se rumoreaba que la integración económica completa fue un proceso mucho más lento y desigual de lo que los optimistas de la época pregonaban."
+        }
+    },
+    {
+        "id": "002",
+        "task": "mcq",
+        "context": "El reglamento de la biblioteca es claro: si un estudiante devuelve un libro con más de tres días de retraso, se le suspenderá la cuenta por un mes. María devolvió su libro de Historia el viernes, cuando debía entregarlo el lunes de esa misma semana. Sin embargo, su cuenta no fue suspendida. Existían dudas sobre si la hora de devolución influía en el cálculo del último día de retraso.",
+        "question": "¿Qué conclusión lógica se puede extraer del texto sobre la situación de María?",
+        "options": [
+            "A: La biblioteca olvidó registrar la devolución del libro de María. (incorrecta)",
+            "B: El libro de Historia no está sujeto a las reglas de suspensión. (incorrecta)",
+            "C: El retraso de María no superó el límite de tres días establecido. (incorrecta)",
+            "D: Existe alguna excepción o factor no mencionado que evitó su suspensión. (correcta)"
+        ],
+        "label": "D",
+        "rationale": "Del lunes al viernes hay cuatro días de retraso, por lo que cumplía la condición para ser suspendida. Al no ser suspendida, la lógica dicta que intervino un factor externo o excepción que el texto no detalla.",
+        "metadata": {
+            "attack": "contradictory_noise_injection",
+            "difficulty": "medium",
+            "injected_noise": "Existían dudas sobre si la hora de devolución influía en el cálculo del último día de retraso."
+        }
+    }
+]
