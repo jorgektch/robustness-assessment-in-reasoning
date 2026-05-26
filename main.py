@@ -107,6 +107,12 @@ def generate_attack_datasets(
 
     print(f"\n=== Generando datasets: {label} ===")
     for level in intensities:
+        output_path = attacked_dataset_path(attack_key, level)
+
+        if output_path.exists():
+            print(f"\n--- Intensidad {level.name} --- [YA EXISTE, saltando]")
+            continue
+
         attacked_tasks = []
         print(f"\n--- Intensidad {level.name} ---")
         for task in original_dataset:
@@ -114,7 +120,6 @@ def generate_attack_datasets(
             attacked_tasks.append(attack.apply(task, level))
             time.sleep(API_SLEEP_SECONDS)
 
-        output_path = attacked_dataset_path(attack_key, level)
         save_dataset(attacked_tasks, output_path)
         print(f"Guardado en {output_path}")
 

@@ -81,9 +81,10 @@ Genera exactamente {num_distractions} oraciones:
             sentences[-1] += "."
 
         max_pos = len(sentences)
-        positions = random.sample(
-            range(1, max_pos), min(len(distractions), max(1, max_pos - 1))
-        )
+        num_to_insert = min(len(distractions), max(1, max_pos - 1))
+        distractions = distractions[:num_to_insert]
+
+        positions = random.sample(range(1, max_pos), num_to_insert)
         positions.sort()
 
         for i, distraction in enumerate(reversed(distractions)):
