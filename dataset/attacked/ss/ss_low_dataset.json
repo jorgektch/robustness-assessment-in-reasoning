@@ -68,7 +68,7 @@
     {
         "id": "004",
         "task": "mcq",
-        "context": "La ley de la gravitación universal de Newton describía la gravedad como una fuerza de atracción instantánea entre dos masas. Para objetos de masa relativamente pequeña como los que encontramos en la Tierra, las predicciones de Newton son extremadamente precisas y más sencillas de calcular. Sin embargo, la teoría de la relatividad general de Einstein propuso un cambio radical: la gravedad no es una fuerza, sino una consecuencia de la curvatura del espaciotiempo causada por la masa y la energía.",
+        "context": "Sin embargo, la teoría de la relatividad general de Einstein propuso un cambio radical: la gravedad no es una fuerza, sino una consecuencia de la curvatura del espaciotiempo causada por la masa y la energía. La ley de la gravitación universal de Newton describía la gravedad como una fuerza de atracción instantánea entre dos masas. Para objetos de masa relativamente pequeña como los que encontramos en la Tierra, las predicciones de Newton son extremadamente precisas y más sencillas de calcular.",
         "question": "Según el texto, ¿en qué situación la ley de Newton sigue siendo preferible a la de Einstein?",
         "options": [
             "A: Para calcular la órbita de planetas alrededor de estrellas masivas.",
@@ -90,7 +90,7 @@
     {
         "id": "005",
         "task": "mcq",
-        "context": "Cuando el nivel general de precios sube, con cada unidad de moneda se adquieren menos bienes y servicios. La inflación es un aumento generalizado y sostenido de los precios de bienes y servicios en una economía durante un período de tiempo. Es decir, la inflación refleja la disminución del poder adquisitivo de la moneda. Una medida frecuente de la inflación es el Índice de Precios al Consumidor (IPC).",
+        "context": "La inflación es un aumento generalizado y sostenido de los precios de bienes y servicios en una economía durante un período de tiempo. Cuando el nivel general de precios sube, con cada unidad de moneda se adquieren menos bienes y servicios. Una medida frecuente de la inflación es el Índice de Precios al Consumidor (IPC). Es decir, la inflación refleja la disminución del poder adquisitivo de la moneda.",
         "question": "¿Qué indica un aumento sostenido de la inflación?",
         "options": [
             "A: Que el valor de la moneda está aumentando.",
@@ -156,7 +156,7 @@
     {
         "id": "008",
         "task": "mcq",
-        "context": "El cifrado asimétrico utiliza un par de claves para la encriptación: una clave pública, que se puede compartir libremente, y una clave privada, que debe mantenerse en secreto. Esto garantiza la confidencialidad. Un mensaje cifrado con la clave pública de un destinatario solo puede ser descifrado con la clave privada correspondiente de ese mismo destinatario.",
+        "context": "Un mensaje cifrado con la clave pública de un destinatario solo puede ser descifrado con la clave privada correspondiente de ese mismo destinatario. El cifrado asimétrico utiliza un par de claves para la encriptación: una clave pública, que se puede compartir libremente, y una clave privada, que debe mantenerse en secreto. Esto garantiza la confidencialidad.",
         "question": "Si Ana quiere enviar un mensaje seguro a Carlos usando cifrado asimétrico, ¿qué clave debe usar para cifrar el mensaje?",
         "options": [
             "A: La clave privada de Ana.",

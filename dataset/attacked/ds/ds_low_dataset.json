@@ -5,10 +5,10 @@
         "context": "Durante la Revolución Industrial, la máquina de vapor no solo transformó la manufactura, sino que también redefinió el transporte. A pesar de su enorme impacto inicial aumentando la producción en las fábricas textiles de las ciudades, fue el posterior desarrollo de las locomotoras de vapor lo que realmente logró conectar las economías regionales aisladas.",
         "question": "¿Cuál fue el impacto más significativo de la máquina de vapor a nivel regional según el texto?",
         "options": [
-            "A: Generó una expansión sin precedentes en la producción de bienes en los centros manufactureros de las ciudades.",
+            "A: Desencadenó una transformación industrial profunda en los centros de producción regional.",
             "B: Facilitó la integración y conexión económica a través del transporte.",
-            "C: Alteró las dinámicas laborales rurales, incentivando la migración hacia las ciudades industrializadas.",
-            "D: Transformó los sistemas de transporte de carga a gran escala, especialmente en rutas fluviales importantes."
+            "C: Provocó un cambio substancial en los patrones de empleo rural debido a la mecanización.",
+            "D: Impulsó avances clave en el transporte fluvial, uniendo mercados locales adyacentes."
         ],
         "label": "B",
         "rationale": "Aunque la opción A es cierta según el texto, la pregunta pide específicamente el impacto 'a nivel regional', el cual se logró mediante las locomotoras conectando economías aisladas.",
@@ -27,9 +27,9 @@
         "context": "El reglamento de la biblioteca es claro: si un estudiante devuelve un libro con más de tres días de retraso, se le suspenderá la cuenta por un mes. María devolvió su libro de Historia el viernes, cuando debía entregarlo el lunes de esa misma semana. Sin embargo, su cuenta no fue suspendida.",
         "question": "¿Qué conclusión lógica se puede extraer del texto sobre la situación de María?",
         "options": [
-            "A: Un error administrativo en la biblioteca provocó que su retraso no fuera detectado a tiempo.",
-            "B: Los libros de materias básicas o de alta demanda tienen políticas de penalización distintas.",
-            "C: El método de la biblioteca para calcular los días de retraso hizo que el suyo no excediera el límite.",
+            "A: La fecha de devolución de María fue registrada con un error que invalidó el cálculo del retraso.",
+            "B: Los libros de texto de Historia, por su naturaleza académica, están exentos de esta política de suspensión.",
+            "C: La biblioteca utiliza un sistema de conteo de días que no considera el primer día de retraso para la suspensión.",
             "D: Existe alguna excepción o factor no mencionado que evitó su suspensión."
         ],
         "label": "D",
@@ -49,10 +49,10 @@
         "context": "En el mimetismo batesiano, una especie inofensiva evoluciona para imitar las señales de advertencia de una especie nociva. Esta estrategia de defensa solo funciona si el depredador común ha tenido encuentros previos negativos con la especie nociva y, como resultado, aprende a evitar a cualquier animal con esa apariencia.",
         "question": "¿Cuál es la condición fundamental para que el mimetismo batesiano sea una estrategia de defensa exitosa?",
         "options": [
-            "A: La especie inofensiva debe ser lo suficientemente numerosa para que los depredadores la encuentren con regularidad.",
-            "B: El depredador debe encontrar difícil distinguir la especie inofensiva de la especie nociva por su apariencia.",
+            "A: La especie inofensiva debe mantener una población significativa para que la imitación sea un rasgo evolutivamente estable.",
+            "B: El depredador debe tener dificultades para distinguir entre la especie nociva y la inofensiva a primera vista.",
             "C: El depredador debe haber aprendido a asociar la señal de advertencia con un peligro real.",
-            "D: La especie nociva y la inofensiva deben cohabitar en la misma región geográfica."
+            "D: La especie nociva y la inofensiva deben compartir el mismo entorno geográfico para que la imitación sea relevante."
         ],
         "label": "C",
         "rationale": "El texto establece explícitamente que la estrategia 'solo funciona si el depredador... aprende a evitar' a la especie nociva basándose en 'encuentros previos negativos'. Esto demuestra que el aprendizaje del depredador es la condición clave.",
@@ -71,9 +71,9 @@
         "context": "La ley de la gravitación universal de Newton describía la gravedad como una fuerza de atracción instantánea entre dos masas. Sin embargo, la teoría de la relatividad general de Einstein propuso un cambio radical: la gravedad no es una fuerza, sino una consecuencia de la curvatura del espaciotiempo causada por la masa y la energía. Para objetos de masa relativamente pequeña como los que encontramos en la Tierra, las predicciones de Newton son extremadamente precisas y más sencillas de calcular.",
         "question": "Según el texto, ¿en qué situación la ley de Newton sigue siendo preferible a la de Einstein?",
         "options": [
-            "A: Para la descripción inicial del movimiento de los planetas en el sistema solar.",
-            "B: Para situaciones que requieren alta precisión sin la complejidad de otras teorías.",
-            "C: Cuando se analizan sistemas muy grandes, como cúmulos de galaxias, si no hay singularidades.",
+            "A: Para una aproximación simplificada de órbitas de planetas, incluso en sistemas con estrellas masivas.",
+            "B: Cuando la precisión requerida es alta, pero no al nivel extremo que solo Einstein puede ofrecer.",
+            "C: Para explorar conceptos básicos de la gravedad en entornos cósmicos, como aquellos con agujeros negros.",
             "D: Para problemas cotidianos en la Tierra donde las masas son pequeñas."
         ],
         "label": "D",
@@ -93,10 +93,10 @@
         "context": "La inflación es un aumento generalizado y sostenido de los precios de bienes y servicios en una economía durante un período de tiempo. Cuando el nivel general de precios sube, con cada unidad de moneda se adquieren menos bienes y servicios. Es decir, la inflación refleja la disminución del poder adquisitivo de la moneda. Una medida frecuente de la inflación es el Índice de Precios al Consumidor (IPC).",
         "question": "¿Qué indica un aumento sostenido de la inflación?",
         "options": [
-            "A: Que el valor nominal de los activos y bienes está en constante aumento.",
-            "B: Que los salarios de los trabajadores se ajustan automáticamente a la mayoría de los aumentos de precios.",
+            "A: Que la moneda se fortalece frente a otras divisas.",
+            "B: Que los salarios de los trabajadores se ajustan automáticamente a la inflación.",
             "C: Que el poder adquisitivo de la moneda está disminuyendo.",
-            "D: Que las políticas monetarias están logrando estabilizar los precios de forma gradual."
+            "D: Que el gobierno está implementando medidas restrictivas de política monetaria."
         ],
         "label": "C",
         "rationale": "El texto define la inflación como un aumento de precios que 'refleja la disminución del poder adquisitivo de la moneda', lo que significa que se pueden comprar menos cosas con la misma cantidad de dinero.",
@@ -115,10 +115,10 @@
         "context": "La fotosíntesis es el proceso mediante el cual las plantas verdes convierten la energía luminosa en energía química, almacenada como glucosa. Este proceso requiere dióxido de carbono (CO2) y agua (H2O), y libera oxígeno (O2) como subproducto. La clorofila, el pigmento que da a las plantas su color verde, es crucial para absorber la luz solar.",
         "question": "¿Cuál de los siguientes es un subproducto liberado durante la fotosíntesis, y no un requisito?",
         "options": [
-            "A: Glucosa, la principal molécula energética liberada para el crecimiento.",
-            "B: Dióxido de carbono, un gas que la planta exhala por la noche.",
+            "A: Glucosa, el combustible que la planta absorbe del suelo.",
+            "B: Dióxido de carbono, un gas que la planta expulsa principalmente por la noche.",
             "C: Oxígeno",
-            "D: Energía luminosa, que se transforma en energía química utilizable."
+            "D: Energía luminosa, una forma de energía que la planta irradia al ambiente."
         ],
         "label": "C",
         "rationale": "El texto establece claramente que el proceso 'libera oxígeno (O2) como subproducto', mientras que el dióxido de carbono y la energía luminosa son requisitos.",
@@ -137,10 +137,10 @@
         "context": "La transición de la República Romana al Imperio no fue un evento único, sino un largo proceso. Aunque la dictadura de Julio César marcó un punto de inflexión, fue su hijo adoptivo, Octavio (más tarde Augusto), quien formalmente puso fin a la República al establecer el Principado, un sistema en el que el emperador ostentaba el poder supremo bajo la apariencia de las tradiciones republicanas.",
         "question": "¿A quién se le atribuye el fin formal de la República Romana y el establecimiento de la nueva forma de gobierno?",
         "options": [
-            "A: A Julio César, al concentrar un poder sin precedentes que erosionó irrevocablemente los cimientos republicanos.",
-            "B: Al Senado Romano, al conceder a Octavio una serie de poderes excepcionales que validaron su autoridad sobre las instituciones tradicionales.",
+            "A: A Julio César, quien con su dictadura vitalicia inició la fase final de la República.",
+            "B: Al Senado Romano, por su serie de decretos que legitimaron los nuevos poderes del príncipe.",
             "C: A Octavio (Augusto), al crear el sistema del Principado.",
-            "D: A Marco Antonio, cuya derrota en Actium marcó el fin de las guerras civiles y la eliminación del último rival significativo para el poder único."
+            "D: A Marco Antonio, cuya eliminación del escenario político permitió el ascenso de un único poder."
         ],
         "label": "C",
         "rationale": "El texto indica explícitamente que Octavio (Augusto) 'formalmente puso fin a la República al establecer el Principado'.",
@@ -159,10 +159,10 @@
         "context": "El cifrado asimétrico utiliza un par de claves para la encriptación: una clave pública, que se puede compartir libremente, y una clave privada, que debe mantenerse en secreto. Un mensaje cifrado con la clave pública de un destinatario solo puede ser descifrado con la clave privada correspondiente de ese mismo destinatario. Esto garantiza la confidencialidad.",
         "question": "Si Ana quiere enviar un mensaje seguro a Carlos usando cifrado asimétrico, ¿qué clave debe usar para cifrar el mensaje?",
         "options": [
-            "A: La clave privada de Ana, para firmar digitalmente el mensaje y asegurar su autenticidad.",
+            "A: La clave privada de Ana, para autenticar que el mensaje proviene de ella.",
             "B: La clave pública de Carlos.",
-            "C: La clave pública de Ana, porque Ana la necesita para iniciar el proceso de encriptación.",
-            "D: La clave privada de Carlos, dado que es la clave que Carlos usará para descifrar el mensaje."
+            "C: La clave pública de Ana, para que solo ella pueda acceder al contenido antes de enviarlo.",
+            "D: La clave privada de Carlos, ya que es la más segura y solo él debería tener acceso a ella."
         ],
         "label": "B",
         "rationale": "Para que solo Carlos pueda leer el mensaje, este debe ser cifrado con su clave pública. De esta manera, solo él, con su clave privada correspondiente, podrá descifrarlo.",
@@ -181,10 +181,10 @@
         "context": "Las rocas metamórficas se forman a partir de rocas preexistentes (ígneas, sedimentarias u otras rocas metamórficas) que han sido alteradas por el calor, la presión o la acción de fluidos químicamente activos. Este proceso, llamado metamorfismo, no derrite la roca original, sino que transforma su mineralogía, textura y estructura química en un estado sólido.",
         "question": "¿Qué condición es fundamental en el proceso de metamorfismo según el texto?",
         "options": [
-            "A: El incremento de calor que produce la fusión parcial de la roca original.",
-            "B: La compactación y cementación de materiales rocosos por la acción de fluidos acuosos superficiales.",
+            "A: Una transformación radical de la roca que ocurre cuando esta alcanza un estado de fluidez por el calor extremo.",
+            "B: El desplazamiento de grandes masas rocosas bajo la corteza que genera fricción y un leve cambio composicional.",
             "C: La alteración de la roca en estado sólido, sin llegar a derretirse.",
-            "D: El enfriamiento gradual de material rocoso fundido en el interior de la Tierra."
+            "D: La solidificación de la roca después de alcanzar un estado de fusión parcial bajo tierra."
         ],
         "label": "C",
         "rationale": "El texto especifica que el metamorfismo 'no derrite la roca original', sino que la transforma 'en un estado sólido', diferenciándolo de los procesos ígneos.",
@@ -203,10 +203,10 @@
         "context": "El sesgo de confirmación es la tendencia a buscar, interpretar, favorecer y recordar información de una manera que confirma o apoya las creencias o hipótesis preexistentes. Las personas muestran esta tendencia cuando seleccionan la información que apoya sus puntos de vista, ignorando la información contradictoria, o cuando interpretan evidencia ambigua como si apoyara sus posturas existentes.",
         "question": "¿Cómo se manifiesta principalmente el sesgo de confirmación?",
         "options": [
-            "A: Tomando en consideración una amplia gama de evidencia, pero priorizando la que es familiar.",
-            "B: Examinando perspectivas opuestas, pero con el fin de identificar sus debilidades.",
+            "A: Evaluando toda la información con una perspectiva inicial, creyendo ser objetivo.",
+            "B: Considerando brevemente puntos de vista alternativos antes de formar una opinión final.",
             "C: Favoreciendo la información que se alinea con las creencias actuales.",
-            "D: Mostrando cierta apertura a nueva información, pero sin alterar las convicciones fundamentales."
+            "D: Mostrando flexibilidad en la interpretación de los hechos para adaptarlos a una narrativa conocida."
         ],
         "label": "C",
         "rationale": "La definición central del sesgo de confirmación, según el texto, es la tendencia a 'favorecer y recordar información de una manera que confirma o apoya las creencias... preexistentes'.",
