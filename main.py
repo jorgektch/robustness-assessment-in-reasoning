@@ -17,13 +17,18 @@ sys.path.insert(0, str(ROOT))
 from core.attack_validator import AttackValidator
 from core.executor import AttackedVerbalTasksExecutor
 from core.models import IntensityLevel, VerbalTask
-from core.llm_client import LLMClient, build_client
+from core.llm_client import LLMClient, build_client, warn_on_shared_families
 from core.base_attack import BaseAttack
 
-ORIGINAL_DATASET = ROOT / "dataset" / "og_dataset.json"
+DEFAULT_ORIGINAL_DATASET = ROOT / "dataset" / "og_dataset.json"
 DATASET_DIR = ROOT / "dataset" / "attacked"
 API_SLEEP_SECONDS = 4
 MAX_ATTEMPTS = 3
+
+
+def original_dataset_path() -> Path:
+    """El dataset original lo provee el docente; ruta parametrizable vía ORIGINAL_DATASET_PATH."""
+    return Path(os.getenv("ORIGINAL_DATASET_PATH", str(DEFAULT_ORIGINAL_DATASET)))
 
 ATTACK_REGISTRY: Dict[str, Dict] = {
     "isi": {
@@ -81,7 +86,7 @@ def attacked_dataset_path(attack_key: str, intensity: IntensityLevel) -> Path:
 
 
 def load_original_dataset() -> List[VerbalTask]:
-    with open(ORIGINAL_DATASET, "r", encoding="utf-8") as f:
+    with open(original_dataset_path(), "r", encoding="utf-8") as f:
         return [VerbalTask(**task) for task in json.load(f)]
 
 
@@ -188,7 +193,82 @@ def execute_evaluation_pipeline(attack_keys: Optional[List[str]] = None) -> None
         print("No hay datasets atacados. Genera datasets primero (opción del menú).")
         return
 
-    executor.execute_attacks_pipeline(str(ORIGINAL_DATASET), attacked_paths)
+    executor.execute_attacks_pipeline(str(original_dataset_path()), attacked_paths)
+
+
+def validate_existing_datasets(
+    attack_keys: Optional[List[str]] = None,
+    validator: Optional[AttackValidator] = None,
+) -> None:
+    """Corre solo el AttackValidator sobre datasets atacados ya generados.
+
+    Añade attack_valid / attack_validation / validation_failures a la metadata
+    de cada tarea y persiste el dataset; no altera el contenido de las tareas.
+    Útil para datasets antiguos generados antes de existir la validación.
+    """
+    keys = attack_keys or list(ATTACK_REGISTRY.keys())
+    original_map = {task.id: task for task in load_original_dataset()}
+    shared_judge: Optional[LLMClient] = None
+    validated_any = False
+
+    for attack_key in keys:
+        if validator is not None:
+            active_validator = validator
+        elif attack_key == "ss":
+            active_validator = AttackValidator(None)
+        else:
+            if shared_judge is None:
+                shared_judge = build_client("judge")
+            active_validator = AttackValidator(shared_judge)
+
+        for intensity in IntensityLevel:
+            path = attacked_dataset_path(attack_key, intensity)
+            if not path.exists():
+                continue
+            validated_any = True
+
+            with open(path, "r", encoding="utf-8") as f:
+                tasks = [VerbalTask(**task) for task in json.load(f)]
+
+            print(f"\n--- Validando {path.name} ---")
+            valid_count = 0
+            for task in tasks:
+                original = original_map.get(task.id)
+                if original is None:
+                    task.metadata["attack_valid"] = False
+                    task.metadata["validation_failures"] = [
+                        "tarea original no encontrada en el dataset original"
+                    ]
+                    continue
+                report = active_validator.validate(original, task, attack_key)
+                task.metadata["attack_valid"] = report["valid"]
+                task.metadata["attack_validation"] = report
+                if report["valid"]:
+                    task.metadata.pop("validation_failures", None)
+                    valid_count += 1
+                else:
+                    task.metadata["validation_failures"] = report["failures"]
+                if active_validator.judge is not None:
+                    time.sleep(API_SLEEP_SECONDS)
+
+            save_dataset(tasks, path)
+            print(f"  AVR: {valid_count}/{len(tasks)} — metadata actualizada en {path}")
+
+    if not validated_any:
+        print("No hay datasets atacados para validar. Genera datasets primero.")
+
+
+def print_role_configuration() -> None:
+    print("\n--- Configuración de roles ---")
+    clients: Dict[str, LLMClient] = {}
+    for role, label in (("attacker", "Atacante"), ("solver", "Solver"), ("judge", "Juez")):
+        try:
+            client = build_client(role)
+            clients[role] = client
+            print(f"  {label}: {client.model_id}")
+        except Exception as e:
+            print(f"  {label}: [ERROR] {e}")
+    warn_on_shared_families(clients)
 
 
 def print_attack_menu() -> None:
@@ -198,6 +278,7 @@ def print_attack_menu() -> None:
 
 
 def main() -> None:
+    print_role_configuration()
     while True:
         print("\n========== Robustness Assessment — Menú principal ==========")
         print("1. Generar datasets de UN ataque (todas las intensidades)")
@@ -205,13 +286,14 @@ def main() -> None:
         print("3. Generar TODOS los ataques (todas las intensidades)")
         print("4. Ejecutar pipeline de evaluación (todos los datasets existentes)")
         print("5. Ejecutar evaluación de un ataque concreto")
-        print("6. Salir")
+        print("6. Validar datasets atacados existentes (solo AttackValidator)")
+        print("7. Salir")
         print_attack_menu()
 
         choice = input("\nOpción: ").strip()
 
         if choice == "1":
-            attack_key = input("Clave del ataque (isi, cni, ds, mhd, ss): ").strip().lower()
+            attack_key = input(f"Clave del ataque ({', '.join(ATTACK_REGISTRY)}): ").strip().lower()
             if attack_key in ATTACK_REGISTRY:
                 generate_attack_datasets(attack_key)
             else:
@@ -244,6 +326,15 @@ def main() -> None:
                 print("Clave de ataque no válida.")
 
         elif choice == "6":
+            attack_key = input("Clave del ataque (vacío = todos): ").strip().lower()
+            if not attack_key:
+                validate_existing_datasets()
+            elif attack_key in ATTACK_REGISTRY:
+                validate_existing_datasets([attack_key])
+            else:
+                print("Clave de ataque no válida.")
+
+        elif choice == "7":
             break
 
         else:
