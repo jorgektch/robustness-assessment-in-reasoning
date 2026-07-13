@@ -1,45 +1,25 @@
-import os
-import google.generativeai as genai
-from dotenv import load_dotenv
 import json
-import time
+import warnings
+
+from .llm_client import GeminiClient, LLMClient
 from .models import VerbalTask
 
-# Construct the path to the .env file in the project root
-dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env')
-load_dotenv(dotenv_path=dotenv_path, override=True)
 
+class GeminiAPI(GeminiClient):
+    """Alias deprecado de GeminiClient. Usa core.llm_client.GeminiClient."""
 
-class GeminiAPI:
-    def __init__(self):
-        self.api_key = os.getenv("GEMINI_API_KEY")
-        if not self.api_key:
-            raise ValueError("GEMINI_API_KEY not found in .env file")
-        genai.configure(api_key=self.api_key)
-        self.model = genai.GenerativeModel('gemini-2.5-flash')
-
-    def query(self, prompt: str, retries: int = 5) -> str:
-        import re
-        for attempt in range(retries):
-            try:
-                response = self.model.generate_content(prompt)
-                return response.text
-            except Exception as e:
-                error_msg = str(e)
-                if '429' in error_msg:
-                    match = re.search(r'seconds:\s*(\d+)', error_msg)
-                    wait_seconds = int(match.group(1)) + 3 if match else 65
-                    print(f"  [Rate limit] Esperando {wait_seconds}s... (intento {attempt + 1}/{retries})")
-                    time.sleep(wait_seconds)
-                else:
-                    print(f"  [Error] {e}")
-                    return ""
-        print("  [Error] Se agotaron los reintentos.")
-        return ""
+    def __init__(self, *args, **kwargs):
+        warnings.warn(
+            "GeminiAPI está deprecado; usa core.llm_client.GeminiClient "
+            "o la factory core.llm_client.build_client(role).",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        super().__init__(*args, **kwargs)
 
 
 class TaskResolver:
-    def resolve(self, task: VerbalTask, api: GeminiAPI) -> VerbalTask:
+    def resolve(self, task: VerbalTask, api: LLMClient) -> VerbalTask:
         prompt = f"""
         Context: {task.context}
         Question: {task.question}
@@ -58,13 +38,14 @@ class TaskResolver:
         except json.JSONDecodeError:
             print(f"Failed to decode JSON from response: {response_text}")
             task.results = {"label": "", "rationale": "Error parsing response"}
+        task.results["solver_model"] = api.model_id
         return task
 
 
 class TaskValidator:
 
     def validate(
-        self, task: VerbalTask, original_task: VerbalTask, api: GeminiAPI
+        self, task: VerbalTask, original_task: VerbalTask, api: LLMClient
     ) -> VerbalTask:
         is_correct = task.results.get("label") == original_task.label
         attacked_rationale = task.results.get("rationale", "")
@@ -129,5 +110,6 @@ class TaskValidator:
             "is_correct": is_correct,
             "reasoning_quality_score": reasoning_quality_score,
             "explanation": explanation,
+            "judge_model": api.model_id,
         }
         return task

@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from core.base_attack import BaseAttack
 from core.models import VerbalTask, IntensityLevel
-from core.services import GeminiAPI
+from core.llm_client import LLMClient
 
 
 class DistractorStrengthening(BaseAttack):
@@ -26,7 +26,7 @@ class DistractorStrengthening(BaseAttack):
         """,
     }
 
-    def __init__(self, api: GeminiAPI):
+    def __init__(self, api: LLMClient):
         self.api = api
 
     def apply(self, task: VerbalTask, intensity: IntensityLevel) -> VerbalTask:

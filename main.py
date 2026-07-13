@@ -16,7 +16,7 @@ sys.path.insert(0, str(ROOT))
 
 from core.executor import AttackedVerbalTasksExecutor
 from core.models import IntensityLevel, VerbalTask
-from core.services import GeminiAPI
+from core.llm_client import build_client
 from core.base_attack import BaseAttack
 
 ORIGINAL_DATASET = ROOT / "dataset" / "og_dataset.json"
@@ -98,9 +98,9 @@ def generate_attack_datasets(
     attack_key: str,
     intensity: Optional[IntensityLevel] = None,
 ) -> None:
-    api = GeminiAPI()
+    attacker = build_client("attacker")
     attack_cls = load_attack_class(attack_key)
-    attack = attack_cls(api)
+    attack = attack_cls(attacker)
     original_dataset = load_original_dataset()
     intensities = [intensity] if intensity else list(IntensityLevel)
     label = ATTACK_REGISTRY[attack_key]["label"]
@@ -117,7 +117,9 @@ def generate_attack_datasets(
         print(f"\n--- Intensidad {level.name} ---")
         for task in original_dataset:
             print(f"  Atacando tarea {task.id}...")
-            attacked_tasks.append(attack.apply(task, level))
+            attacked_task = attack.apply(task, level)
+            attacked_task.metadata["attacker_model"] = attacker.model_id
+            attacked_tasks.append(attacked_task)
             time.sleep(API_SLEEP_SECONDS)
 
         save_dataset(attacked_tasks, output_path)
@@ -131,8 +133,8 @@ def generate_all_attacks(intensity: Optional[IntensityLevel] = None) -> None:
 
 def execute_evaluation_pipeline(attack_keys: Optional[List[str]] = None) -> None:
     keys = attack_keys or list(ATTACK_REGISTRY.keys())
-    api = GeminiAPI()
-    executor = AttackedVerbalTasksExecutor(api)
+    solver = build_client("solver")
+    executor = AttackedVerbalTasksExecutor(solver)
 
     attacked_paths: Dict[str, str] = {}
     for attack_key in keys:

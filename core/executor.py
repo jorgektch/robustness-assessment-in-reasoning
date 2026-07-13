@@ -1,12 +1,13 @@
 import json
 import os
 from typing import Dict, List
-from .services import GeminiAPI, TaskResolver, TaskValidator
+from .llm_client import LLMClient
+from .services import TaskResolver, TaskValidator
 from .models import VerbalTask, IntensityLevel
 
 
 class AttackedVerbalTasksExecutor:
-    def __init__(self, api: GeminiAPI):
+    def __init__(self, api: LLMClient):
         self.api = api
         self.resolver = TaskResolver()
         self.validator = TaskValidator()
