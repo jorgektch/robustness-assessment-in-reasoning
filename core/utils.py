@@ -117,17 +117,19 @@ def extract_sentence_list(text: str) -> List[str]:
 def insert_distractions(context: str, distractions: List[str]) -> str:
     """
     Inserta oraciones en posiciones aleatorias del contexto (nunca al inicio),
-    preservando todas las oraciones originales y su orden relativo.
+    preservando todas las oraciones originales, su puntuación y su orden relativo.
     """
-    sentences = context.split(". ")
-    if not sentences[-1].endswith("."):
+    sentences = [s for s in re.split(r"(?<=[.!?])\s+", context.strip()) if s]
+    if not sentences:
+        sentences = [context.strip()]
+    if sentences[-1] and sentences[-1][-1] not in ".!?":
         sentences[-1] += "."
 
     max_pos = len(sentences)
-    num_to_insert = min(len(distractions), max(1, max_pos - 1))
+    num_to_insert = min(len(distractions), max_pos)
     distractions = distractions[:num_to_insert]
 
-    positions = random.sample(range(1, max_pos), num_to_insert)
+    positions = random.sample(range(1, max_pos + 1), num_to_insert)
     positions.sort()
 
     for i, distraction in enumerate(reversed(distractions)):

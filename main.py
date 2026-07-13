@@ -14,14 +14,16 @@ from typing import Dict, List, Optional, Type
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
+from core.attack_validator import AttackValidator
 from core.executor import AttackedVerbalTasksExecutor
 from core.models import IntensityLevel, VerbalTask
-from core.llm_client import build_client
+from core.llm_client import LLMClient, build_client
 from core.base_attack import BaseAttack
 
 ORIGINAL_DATASET = ROOT / "dataset" / "og_dataset.json"
 DATASET_DIR = ROOT / "dataset" / "attacked"
 API_SLEEP_SECONDS = 4
+MAX_ATTEMPTS = 3
 
 ATTACK_REGISTRY: Dict[str, Dict] = {
     "isi": {
@@ -94,11 +96,44 @@ def save_dataset(tasks: List[VerbalTask], path: Path) -> None:
         )
 
 
+def apply_validated_attack(
+    attack: BaseAttack,
+    validator: AttackValidator,
+    task: VerbalTask,
+    level: IntensityLevel,
+    attack_key: str,
+    attacker_model: str,
+) -> VerbalTask:
+    """Aplica el ataque y lo valida; regenera hasta MAX_ATTEMPTS si la validación falla."""
+    attacked = task
+    report = {"failures": ["el ataque no se ejecutó"]}
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        attacked = attack.apply(task, level)
+        if attacked is task:
+            # Algunos ataques devuelven la tarea original ante fallo: no mutar el dataset original
+            attacked = task.model_copy(deep=True)
+        attacked.metadata["attacker_model"] = attacker_model
+        report = validator.validate(task, attacked, attack_key)
+        attacked.metadata["generation_attempts"] = attempt
+        attacked.metadata["attack_validation"] = report
+        if report["valid"]:
+            attacked.metadata["attack_valid"] = True
+            return attacked
+        print(f"    [Validación] Intento {attempt}/{MAX_ATTEMPTS} inválido: {report['failures']}")
+
+    attacked.metadata["attack_valid"] = False
+    attacked.metadata["validation_failures"] = report["failures"]
+    return attacked
+
+
 def generate_attack_datasets(
     attack_key: str,
     intensity: Optional[IntensityLevel] = None,
 ) -> None:
     attacker = build_client("attacker")
+    # 'ss' es determinístico: solo checks estructurales, sin juez LLM
+    judge = build_client("judge") if attack_key != "ss" else None
+    validator = AttackValidator(judge)
     attack_cls = load_attack_class(attack_key)
     attack = attack_cls(attacker)
     original_dataset = load_original_dataset()
@@ -117,11 +152,14 @@ def generate_attack_datasets(
         print(f"\n--- Intensidad {level.name} ---")
         for task in original_dataset:
             print(f"  Atacando tarea {task.id}...")
-            attacked_task = attack.apply(task, level)
-            attacked_task.metadata["attacker_model"] = attacker.model_id
+            attacked_task = apply_validated_attack(
+                attack, validator, task, level, attack_key, attacker.model_id
+            )
             attacked_tasks.append(attacked_task)
             time.sleep(API_SLEEP_SECONDS)
 
+        valid_count = sum(1 for t in attacked_tasks if t.metadata.get("attack_valid"))
+        print(f"  Ataques válidos: {valid_count}/{len(attacked_tasks)}")
         save_dataset(attacked_tasks, output_path)
         print(f"Guardado en {output_path}")
 
