@@ -1,16 +1,18 @@
 import json
 import os
-from typing import Dict, List
+from typing import Dict, List, Optional
 from .llm_client import LLMClient
-from .services import TaskResolver, TaskValidator
+from .services import TaskResolver, ResponseEvaluator
 from .models import VerbalTask, IntensityLevel
 
 
 class AttackedVerbalTasksExecutor:
-    def __init__(self, api: LLMClient):
+    def __init__(self, api: LLMClient, judge_api: Optional[LLMClient] = None):
+        # api = solver (modelo evaluado); judge_api = juez para el RQS (familia distinta)
         self.api = api
+        self.judge_api = judge_api or api
         self.resolver = TaskResolver()
-        self.validator = TaskValidator()
+        self.evaluator = ResponseEvaluator()
 
     def resolve_verbal_tasks(self, datasets: Dict[str, List[VerbalTask]]):
         for name, tasks in datasets.items():
@@ -26,14 +28,14 @@ class AttackedVerbalTasksExecutor:
                 name == "og"
             ):  # Original dataset doesn't need validation against itself in the same way
                 for task in attacked_tasks:
-                    self.validator.validate(task, task, self.api)
+                    self.evaluator.validate(task, task, self.judge_api)
                 continue
 
             print(f"Validating tasks for dataset: {name}")
             for attacked_task in attacked_tasks:
                 original_task = original_tasks_map.get(attacked_task.id)
                 if original_task:
-                    self.validator.validate(attacked_task, original_task, self.api)
+                    self.evaluator.validate(attacked_task, original_task, self.judge_api)
 
     def generate_analysis(self, datasets: Dict[str, List[VerbalTask]]) -> Dict:
         analysis = {}
@@ -43,26 +45,40 @@ class AttackedVerbalTasksExecutor:
         og_accuracy = og_correct / len(og_tasks) if og_tasks else 0
         analysis["original_accuracy"] = og_accuracy
 
+        og_correct_ids = {
+            task.id for task in og_tasks if task.validation.get("is_correct")
+        }
+
         for name, tasks in datasets.items():
             if name == "og":
                 continue
 
+            # AVR = ataques válidos / ataques generados
+            valid_tasks = [
+                task for task in tasks if task.metadata.get("attack_valid") is True
+            ]
+            n_valid = len(valid_tasks)
+            avr = n_valid / len(tasks) if tasks else 0
+
+            # Accuracy, ΔAccuracy y Flip Rate SOLO sobre instancias con attack_valid == True
             correct_count = sum(
-                1 for task in tasks if task.validation.get("is_correct")
+                1 for task in valid_tasks if task.validation.get("is_correct")
             )
-            accuracy = correct_count / len(tasks) if tasks else 0
+            accuracy = correct_count / n_valid if n_valid else 0
             delta_accuracy = accuracy - og_accuracy
 
-            og_correct_ids = {
-                task.id for task in og_tasks if task.validation.get("is_correct")
-            }
+            valid_og_correct = [
+                task for task in valid_tasks if task.id in og_correct_ids
+            ]
             flipped_count = sum(
                 1
-                for task in tasks
-                if task.id in og_correct_ids and not task.validation.get("is_correct")
+                for task in valid_og_correct
+                if not task.validation.get("is_correct")
             )
-            flip_rate = flipped_count / len(og_correct_ids) if og_correct_ids else 0
+            flip_rate = flipped_count / len(valid_og_correct) if valid_og_correct else 0
 
+            analysis[f"{name}_avr"] = avr
+            analysis[f"{name}_n_valid"] = n_valid
             analysis[f"{name}_accuracy"] = accuracy
             analysis[f"{name}_delta_accuracy"] = delta_accuracy
             analysis[f"{name}_flip_rate"] = flip_rate

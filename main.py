@@ -172,7 +172,8 @@ def generate_all_attacks(intensity: Optional[IntensityLevel] = None) -> None:
 def execute_evaluation_pipeline(attack_keys: Optional[List[str]] = None) -> None:
     keys = attack_keys or list(ATTACK_REGISTRY.keys())
     solver = build_client("solver")
-    executor = AttackedVerbalTasksExecutor(solver)
+    judge = build_client("judge")
+    executor = AttackedVerbalTasksExecutor(solver, judge)
 
     attacked_paths: Dict[str, str] = {}
     for attack_key in keys:

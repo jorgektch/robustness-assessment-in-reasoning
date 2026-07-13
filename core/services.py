@@ -42,7 +42,11 @@ class TaskResolver:
         return task
 
 
-class TaskValidator:
+class ResponseEvaluator:
+    """Evalúa la respuesta del solver: exactitud vs label y Reasoning Quality Score.
+
+    El RQS debe calcularse con el cliente 'judge' (familia distinta al solver).
+    """
 
     def validate(
         self, task: VerbalTask, original_task: VerbalTask, api: LLMClient
@@ -113,3 +117,15 @@ class TaskValidator:
             "judge_model": api.model_id,
         }
         return task
+
+
+class TaskValidator(ResponseEvaluator):
+    """Alias deprecado de ResponseEvaluator."""
+
+    def __init__(self, *args, **kwargs):
+        warnings.warn(
+            "TaskValidator está deprecado; usa core.services.ResponseEvaluator.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        super().__init__(*args, **kwargs)

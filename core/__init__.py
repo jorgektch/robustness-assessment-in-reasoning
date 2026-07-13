@@ -7,7 +7,8 @@ from .llm_client import (
     build_client,
     warn_on_shared_families,
 )
-from .services import GeminiAPI, TaskResolver, TaskValidator
+from .services import GeminiAPI, TaskResolver, ResponseEvaluator, TaskValidator
+from .attack_validator import AttackValidator, structural_checks
 from .executor import AttackedVerbalTasksExecutor
 
 __all__ = [
@@ -21,6 +22,9 @@ __all__ = [
     "warn_on_shared_families",
     "GeminiAPI",
     "TaskResolver",
+    "ResponseEvaluator",
     "TaskValidator",
+    "AttackValidator",
+    "structural_checks",
     "AttackedVerbalTasksExecutor",
 ]

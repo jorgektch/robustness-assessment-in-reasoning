@@ -2,3 +2,6 @@ pydantic
 google-generativeai
 python-dotenv
 openai
+
+# Dependencias de desarrollo
+pytest
