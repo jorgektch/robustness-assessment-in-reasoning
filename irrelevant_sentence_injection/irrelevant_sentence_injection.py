@@ -6,61 +6,71 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from core.base_attack import BaseAttack
 from core.models import VerbalTask, IntensityLevel
 from core.llm_client import LLMClient
+from core.utils import extract_sentence_list
 
 
 class IrrelevantSentenceInjection(BaseAttack):
-    PROMPTS = {
-        IntensityLevel.LOW: """
-        Inject a single, semantically parasitic sentence into the following text.
-        This sentence must latch onto the specific terminology and logical structure of the preceding sentence, appearing as a direct continuation or clarification.
-        However, it must introduce a subtle, unverifiable presupposition or a shift in definition that is logically void but stylistically seamless.
-        The goal is to create a "micro-fallacy" that is nearly impossible to spot without deep, critical analysis of the sentence's logical relationship to its neighbors.
-        Return ONLY the new, modified text.
+    """
+    Irrelevant Sentence Injection:
+    Añade al contexto oraciones temáticamente afines pero causalmente
+    irrelevantes para responder la pregunta. El contexto original queda
+    íntegro; las oraciones se concatenan programáticamente al final.
+    """
 
-        Original Text:
-        "{context}"
-        """,
-        IntensityLevel.MEDIUM: """
-        Inject a short paragraph (two to three sentences) that introduces an abstract, philosophical, or meta-level consideration that appears profound but is a sophisticated red herring.
-        This injection should use academic or technical jargon appropriate to the text's domain, forcing the reader to grapple with a complex, orthogonal concept.
-        The goal is to trigger cognitive tunneling, where the reader invests significant effort in deciphering the red herring's meaning and relevance, thereby neglecting the primary task's core components.
-        Return ONLY the new, modified text.
-
-        Original Text:
-        "{context}"
-        """,
-        IntensityLevel.HIGH: """
-        Inject a series of sentences (three to five) that construct a "false framework" or a simulacrum of a solution.
-        This injection must mimic the structure of a logical proof, a scientific explanation, or a methodical problem-solving approach, but be built upon a foundation of subtle misinterpretations of the original text's premises or a flawed axiom.
-        It should present a coherent, compelling, but ultimately invalid path to a conclusion, designed to capture the reasoning process and lead it astray entirely. The deception must be structural, not just topical.
-        Return ONLY the new, modified text.
-
-        Original Text:
-        "{context}"
-        """,
+    SENTENCE_COUNTS = {
+        IntensityLevel.LOW: 1,
+        IntensityLevel.MEDIUM: 2,
+        IntensityLevel.HIGH: 3,
     }
 
     def __init__(self, api: LLMClient):
         self.api = api
 
     def apply(self, task: VerbalTask, intensity: IntensityLevel) -> VerbalTask:
-        prompt_template = self.PROMPTS.get(intensity)
-
-        if not prompt_template:
+        num_sentences = self.SENTENCE_COUNTS.get(intensity)
+        if not num_sentences:
             print(
-                f"No prompt defined for intensity level {intensity.name}. Returning original task."
+                f"No sentence count defined for intensity level {intensity.name}. Returning original task."
             )
             return task
 
-        prompt = prompt_template.format(context=task.context)
-        new_context = self.api.query(prompt)
+        prompt = f"""
+        Actúa como un experto en diseño de pruebas adversariales para modelos de lenguaje.
 
-        if new_context:
-            attacked_task = task.model_copy(deep=True)
-            attacked_task.context = new_context
-            attacked_task.metadata["attack"] = "IrrelevantSentenceInjection"
-            attacked_task.metadata["intensity"] = intensity.name
-            return attacked_task
-        else:
-            print("Failed to generate new context. Returning original task.")
-            return task
+        CONTEXTO: {task.context}
+        PREGUNTA: {task.question}
+        OPCIONES: {task.options}
+        RESPUESTA CORRECTA (no la reveles, no la refuerces y no la contradigas): {task.label}
+
+        OBJETIVO:
+        Escribe exactamente {num_sentences} oración(es) NUEVA(s) para añadir al final del contexto.
+        Cada oración debe cumplir:
+        1. Temáticamente afín al contexto (mismo tema, personajes o escenario).
+        2. Factualmente inocua: no aporta información necesaria para responder la pregunta.
+        3. Causalmente irrelevante: no ayuda a responder, no contradice el contexto
+           y no vuelve ambigua la respuesta correcta.
+        4. Autocontenida, en español y con puntuación final.
+
+        FORMATO DE SALIDA: un JSON array con exactamente {num_sentences} string(s),
+        sin markdown, sin explicaciones ni texto adicional.
+        Ejemplo: ["Oración uno.", "Oración dos."]
+        """
+
+        attacked = task.model_copy(deep=True)
+        attacked.metadata["attack"] = "irrelevant_sentence_injection"
+        attacked.metadata["intensity"] = intensity.value
+
+        raw = self.api.query(prompt) or ""
+        sentences = extract_sentence_list(raw)[:num_sentences]
+        attacked.metadata["injected_sentences"] = sentences
+
+        if len(sentences) < num_sentences:
+            print(
+                f"  [WARN] Tarea {task.id}: se esperaban {num_sentences} oraciones "
+                f"y se obtuvieron {len(sentences)}."
+            )
+            attacked.metadata["error"] = "insufficient_sentences"
+            return attacked
+
+        attacked.context = " ".join([task.context] + sentences)
+        return attacked

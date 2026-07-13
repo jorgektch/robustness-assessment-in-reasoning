@@ -1,5 +1,4 @@
 import json
-import random
 import sys
 import os
 
@@ -8,6 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from core.base_attack import BaseAttack
 from core.models import VerbalTask, IntensityLevel
 from core.llm_client import LLMClient
+from core.utils import insert_distractions
 
 
 class MultiHopDistraction(BaseAttack):
@@ -58,7 +58,7 @@ Genera exactamente {num_distractions} oraciones:
                 response = response.strip()
 
             distractions = json.loads(response)
-            attacked.context = self._insert_distractions(task.context, distractions)
+            attacked.context = insert_distractions(task.context, distractions)
             attacked.metadata["attack"] = "multi_hop_distraction"
             attacked.metadata["intensity"] = intensity.value
             attacked.metadata["num_distractions"] = len(distractions)
@@ -74,26 +74,6 @@ Genera exactamente {num_distractions} oraciones:
             attacked.metadata["error_details"] = str(e)
 
         return attacked
-
-    def _insert_distractions(self, context: str, distractions: list) -> str:
-        sentences = context.split(". ")
-        if not sentences[-1].endswith("."):
-            sentences[-1] += "."
-
-        max_pos = len(sentences)
-        num_to_insert = min(len(distractions), max(1, max_pos - 1))
-        distractions = distractions[:num_to_insert]
-
-        positions = random.sample(range(1, max_pos), num_to_insert)
-        positions.sort()
-
-        for i, distraction in enumerate(reversed(distractions)):
-            pos = positions[len(positions) - 1 - i]
-            if not distraction.endswith("."):
-                distraction += "."
-            sentences.insert(pos, distraction)
-
-        return " ".join(sentences)
 
     def _validate_task(self, original: VerbalTask, attacked: VerbalTask) -> bool:
         return (

@@ -88,12 +88,13 @@ def test_shared_family_warning():
 def test_attacks_run_with_mock_client():
     task = make_task()
 
-    # ISI (implementación actual, pre-Fase 2: devuelve el texto completo modificado)
-    isi_response = task.context + " Oración inyectada de prueba."
-    isi = load_attack_class("isi")(MockClient([isi_response]))
+    # ISI (Fase 2: el modelo devuelve solo las oraciones; inyección programática)
+    isi_sentence = "La historia era la materia favorita de varios estudiantes."
+    isi = load_attack_class("isi")(MockClient([json.dumps([isi_sentence], ensure_ascii=False)]))
     attacked = isi.apply(task, IntensityLevel.LOW)
-    assert attacked.context == isi_response
-    assert attacked.metadata.get("attack") == "IrrelevantSentenceInjection"
+    assert task.context in attacked.context
+    assert isi_sentence in attacked.context
+    assert attacked.metadata.get("attack") == "irrelevant_sentence_injection"
 
     # CNI
     noise = "Sin embargo, algunos registros sugieren que hubo dudas."

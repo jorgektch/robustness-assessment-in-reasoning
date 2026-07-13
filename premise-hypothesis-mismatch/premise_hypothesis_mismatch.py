@@ -1,13 +1,13 @@
 import json
 import os
 import sys
-from typing import Optional
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from core.base_attack import BaseAttack
 from core.models import IntensityLevel, VerbalTask
 from core.llm_client import LLMClient
+from core.utils import extract_single_sentence
 
 
 class PremiseHypothesisMismatch(BaseAttack):
@@ -70,7 +70,7 @@ class PremiseHypothesisMismatch(BaseAttack):
 
         try:
             raw = self.api.query(prompt) or ""
-            premise = _extract_single_sentence(raw)
+            premise = extract_single_sentence(raw)
 
             if not premise:
                 attacked.metadata["error"] = "empty_premise"
@@ -96,55 +96,3 @@ class PremiseHypothesisMismatch(BaseAttack):
             attacked.metadata["error"] = "attack_error"
             attacked.metadata["error_details"] = str(e)
             return attacked
-
-
-def _extract_single_sentence(text: str) -> str:
-    """
-    Extrae de forma segura una sola oración.
-    - Limpia markdown y comillas
-    - Si el modelo devuelve JSON, intenta extraer un campo razonable
-    - Devuelve un string sin saltos de línea, con puntuación final
-    """
-    cleaned = (text or "").strip()
-    if not cleaned:
-        return ""
-
-    # Remove common markdown fences
-    cleaned = cleaned.replace("```json", "").replace("```", "").strip()
-
-    # Strip wrapping quotes/backticks
-    cleaned = cleaned.strip().strip('"').strip("'").strip("`").strip()
-
-    # If it looks like JSON, try to parse and extract a field
-    if cleaned.startswith("{") or cleaned.startswith("["):
-        parsed = json.loads(cleaned)
-        extracted: Optional[str] = None
-
-        if isinstance(parsed, dict):
-            for key in ("premise", "injected_premise", "sentence", "text", "output"):
-                val = parsed.get(key)
-                if isinstance(val, str) and val.strip():
-                    extracted = val.strip()
-                    break
-        elif isinstance(parsed, list) and parsed and isinstance(parsed[0], str):
-            extracted = parsed[0].strip()
-
-        if extracted is None:
-            return ""
-        cleaned = extracted.strip().strip('"').strip("'").strip("`").strip()
-
-    # Collapse whitespace/newlines
-    cleaned = " ".join(cleaned.split())
-
-    # Keep only first sentence-ish chunk if multiple were returned
-    # (heuristic: split on sentence-ending punctuation followed by space)
-    for sep in (". ", "? ", "! "):
-        if sep in cleaned:
-            cleaned = cleaned.split(sep, 1)[0] + sep.strip()
-            break
-
-    # Ensure ends with sentence punctuation
-    if cleaned and cleaned[-1] not in ".?!":
-        cleaned += "."
-
-    return cleaned
