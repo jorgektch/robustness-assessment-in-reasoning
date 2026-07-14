@@ -1,220 +1,320 @@
 [
     {
-        "id": "001",
+        "id": "1086",
         "task": "mcq",
-        "context": "A pesar de su enorme impacto inicial aumentando la producción en las fábricas textiles de las ciudades, fue el posterior desarrollo de las locomotoras de vapor lo que realmente logró conectar las economías regionales aisladas. Durante la Revolución Industrial, la máquina de vapor no solo transformó la manufactura, sino que también redefinió el transporte.",
-        "question": "¿Cuál fue el impacto más significativo de la máquina de vapor a nivel regional según el texto?",
+        "context": "Otra razón para dar a la literatura un a plaza importante en la vida de las naciones es que, sin ella, el espíritu crítico, motor del cambio histórico y el mejor valedor de su libertad con que cuentan los pueblos, sufriría una merma irremediable. Porque toda buena literatura es un cuestionamiento radical del mundo en que vivimos. En todo gran texto literario, y, sin que muchas veces lo hayan querido sus autores, alienta una predisposición sediciosa. La literatura no dice nada a los seres humanos satisfechos con su suerte, a quienes colma la vida tal como la viven. Ella es alimento de espíritus indóciles y propagadora de inconformidad, un refugio para aquél al que sobra o falta algo, en la vida, para no ser infeliz, para no sentirse incompleto, sin realizar en sus aspiraciones. Salir a cabalgar junto al escuálido Rocinante y su desbaratado jinete por los descampados de La Mancha, recorrer los mares en pos de la ballena blanca con el capitán Ahab, tragarnos el arsénico con Emma Bovary o convertirnos en un insecto con Gregorio Samsa, es una manera astuta que hemos inventado a fin de desagraviarnos a nosotros mismos de las ofensas e imposiciones de esa vida injusta que nos obliga a ser siempre los mismos, cuando quisiéramos ser muchos, tantos como requerirían para aplacarse los incandescentes deseos de que estamos poseídos. La literatura sólo apacigua momentáneamente esa insatisfacción vital, pero, en ese milagroso intervalo, en esa suspensión provisional de la vida en que nos sume la ilusión literaria —que parece arrancarnos de la cronología y de la historia y convertirnos en ciudadanos de una patria sin tiempo, inmortal — somos otros. Más intensos, más ricos, más complejos, más felices, más lúcidos, que en la constreñida rutina de nuestra vida real. Es decir, esta tremenda comprobación: que la vida soñada de la novela es mejor —más bella y más diversa, más comprensible y perfecta — que aquélla que vivimos cuando estamos despiertos, una vida doblegada por las limitaciones y servidumbre de nuestra condición. Cuando, cerrado el libro, abandonada la ficción literaria, regresamos a aquélla y la cotejamos con el esplendoroso territorio que acabamos de dejar, qué decepción nos espera. En este sentido, la buena literatura es siempre – aunque no lo pretenda ni lo advierta –sediciosa, insumisa, revoltosa: un desafío a lo que existe. La literatura nos permite vivir en un mundo cuyas leyes transgreden las leyes inflexibles por las que transcurre nuestra vida real, emancipados de la cárcel del espacio y del tiempo, en la impunidad para el exceso y duelos de una soberanía que no conoce límites. ¿Cómo no quedaríamos defraudados, luego de leer La guerra y la paz o En busca del tiempo perdido, al volver a este mundo de pequeñeces sin cuento, de fronteras y prohibiciones que nos acechan por doquier y que, a cada paso, corro mpen nuestras ilusiones? Ésa es, así, acaso, más incluso que la de mantener la continuidad de la cultura y la de enriquecer el lenguaje, la mejor contribución de la literatura al progreso humano: recordarnos (sin proponérselo en la mayoría de los casos) que el mundo está mal hecho, que mienten quienes pretenden lo contrario — por ejemplo, los poderes que lo gobiernan —, y que podría estar mejor, más cerca de los mundos que nuestra imaginación y nuestro verbo Una sociedad democrática y libre necesita ciudadanos responsables y críticos, conscientes de la necesidad de someter continuamente a examen el mundo en que vivimos para tratar de acercarlo —empresa siempre quimérica — a aquél en que quisiéramos vivir; pero, gracias a su sequedad en alcanzar aquel sueño inalcanzable — casar la realidad con los deseos — ha nacido y avanzado la civilización, y llevado al ser humano a derrotar a muchos —no a todos, por supuesto — demonios que lo avasallan. Y no existe mejor fermento de insatisfacción frente a lo existente que la literatura. Para formar ciudadanos críticos e independientes, difíciles de manipular, en permanente movilización espiritual y con una imaginación siempre en ascuas, nada como las buenas lecturas. Fragmento seleccionado por el Prof. I ván Abril de Vargas Llosa, Mario. La Literatura y la Vida",
+        "question": "El texto medularmente asevera, que la buena literatura es",
         "options": [
-            "A: Aumentó drásticamente la producción en las fábricas textiles urbanas.",
-            "B: Facilitó la integración y conexión económica a través del transporte.",
-            "C: Reemplazó por completo la mano de obra humana en las zonas rurales.",
-            "D: Inició la revolución tecnológica en la navegación marítima europea."
-        ],
-        "label": "B",
-        "rationale": "Aunque la opción A es cierta según el texto, la pregunta pide específicamente el impacto 'a nivel regional', el cual se logró mediante las locomotoras conectando economías aisladas.",
-        "metadata": {
-            "attacks": [
-                "sentence_shuffling"
-            ],
-            "intensity": "low"
-        },
-        "results": {},
-        "validation": {}
-    },
-    {
-        "id": "002",
-        "task": "mcq",
-        "context": "El reglamento de la biblioteca es claro: si un estudiante devuelve un libro con más de tres días de retraso, se le suspenderá la cuenta por un mes. Sin embargo, su cuenta no fue suspendida. María devolvió su libro de Historia el viernes, cuando debía entregarlo el lunes de esa misma semana.",
-        "question": "¿Qué conclusión lógica se puede extraer del texto sobre la situación de María?",
-        "options": [
-            "A: La biblioteca olvidó registrar la devolución del libro de María.",
-            "B: El libro de Historia no está sujeto a las reglas de suspensión.",
-            "C: El retraso de María no superó el límite de tres días establecido.",
-            "D: Existe alguna excepción o factor no mencionado que evitó su suspensión."
+            "A: alimento de espíritus dóciles y propagadora de conformidad.",
+            "B: el único instrumento para formar ciudadanos críticos y libres.",
+            "C: suavizadora del descontento vital del que estamos poseídos.",
+            "D: un cuestionamiento radical del mundo en que vivimos.",
+            "E: la única que nos recuerda que el mundo está mal hecho."
         ],
         "label": "D",
-        "rationale": "Del lunes al viernes hay cuatro días de retraso, por lo que cumplía la condición para ser suspendida. Al no ser suspendida, la lógica dicta que intervino un factor externo o excepción que el texto no detalla.",
+        "rationale": "Una razón más por la que la Literatura es importante es señalada al inicio de éste fragmento y consiste en que toda buena literatura es un cuestionamiento radical del mundo en que vivimos. En el resto del texto se desarrolla esta idea.",
         "metadata": {
             "attacks": [
                 "sentence_shuffling"
             ],
-            "intensity": "low"
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
         },
         "results": {},
         "validation": {}
     },
     {
-        "id": "003",
+        "id": "1091",
         "task": "mcq",
-        "context": "Esta estrategia de defensa solo funciona si el depredador común ha tenido encuentros previos negativos con la especie nociva y, como resultado, aprende a evitar a cualquier animal con esa apariencia. En el mimetismo batesiano, una especie inofensiva evoluciona para imitar las señales de advertencia de una especie nociva.",
-        "question": "¿Cuál es la condición fundamental para que el mimetismo batesiano sea una estrategia de defensa exitosa?",
+        "context": "Llama la atención que Vargas Llosa, en un artículo periodístico aparecido recientemente, haya reprimido habla r de los elementos “negativos” de la conquista y, sobre todo, de sus complicadas herencias en el presente, como el racismo, por ejemplo. Es decir, para Vargas Llosa lo occidental no parece haber traído ningún problema y es representado por su ascetismo que realmente llama la atención. Dicho de otra manera, la historia demuestra que no hubo modernidad sin colonización –la colonización es, en efecto, la “otra cara” de la modernidad - y que bajo el discurso del supuesto “progreso” de algunos tuvo que existir la colonización y la miseria de otros. En realidad, podría decirse que sucede lo siguiente: Vargas Llosa piensa que “modernidad” y “colonización” se oponen y no se da cuenta de que fueron procesos históricos simultáneos. En ese sentido, razonar como Vargas Llosa implica invisibilizar el hecho de que el encuentro con la modernidad no supuso ninguna mejora de condiciones para las poblaciones indígenas sino, más bien, el reforzamiento de una estructura de dominación que persiste hasta la actualidad. Por lo mismo, la base de la “peruanidad” no puede asociarse solo con Francisco Pizarro sino, sobre todo, a la tensión, todavía irresuelta, entre los Andes y la cultura occidental. Si alguien podría afirmar que la historia consiste únicamente en el desarrollo cada vez más sofisticado de estrategias de dominación, Vargas Llosa parece situarse en el otro extremo y la entiende como un camino progresivo o ascendente hacia la felicidad. Sin embargo, es de notar que en una primera instancia Vargas Llosa quiere ser “políticamente correcto” y, por lo mismo, afirma la equivalencia de las dos herencias culturales en la formación del Perú moderno. Pero luego se ve obligado a romper el balance rodeando la acción de Pizarro con una serie de consecuencias, en su opinión, solo “p ositivas”. En realidad, todo su artículo es un pretexto para hablar de la modernidad o, mejor dicho, de un modelo excesivamente tradicional de la modernidad que es el que ha venido defendiendo en las últimas décadas. Me refiero a un proyecto homogenizador –y sin duda “arcaico” -que nunca relativiza sus propios presupuestos y que no concibe la diferencia cultural: una epistemología acostumbrada a pensar dicotómicamente y a construir, siempre, a un enemigo.",
+        "question": "La intención principal del autor es",
         "options": [
-            "A: La especie inofensiva debe ser más abundante que la especie nociva.",
-            "B: El depredador debe ser incapaz de distinguir los colores de advertencia.",
-            "C: El depredador debe haber aprendido a asociar la señal de advertencia con un peligro real.",
-            "D: La especie nociva y la inofensiva deben competir por los mismos recursos alimenticios."
-        ],
-        "label": "C",
-        "rationale": "El texto establece explícitamente que la estrategia 'solo funciona si el depredador... aprende a evitar' a la especie nociva basándose en 'encuentros previos negativos'. Esto demuestra que el aprendizaje del depredador es la condición clave.",
-        "metadata": {
-            "attacks": [
-                "sentence_shuffling"
-            ],
-            "intensity": "low"
-        },
-        "results": {},
-        "validation": {}
-    },
-    {
-        "id": "004",
-        "task": "mcq",
-        "context": "Sin embargo, la teoría de la relatividad general de Einstein propuso un cambio radical: la gravedad no es una fuerza, sino una consecuencia de la curvatura del espaciotiempo causada por la masa y la energía. La ley de la gravitación universal de Newton describía la gravedad como una fuerza de atracción instantánea entre dos masas. Para objetos de masa relativamente pequeña como los que encontramos en la Tierra, las predicciones de Newton son extremadamente precisas y más sencillas de calcular.",
-        "question": "Según el texto, ¿en qué situación la ley de Newton sigue siendo preferible a la de Einstein?",
-        "options": [
-            "A: Para calcular la órbita de planetas alrededor de estrellas masivas.",
-            "B: Cuando se necesita la máxima precisión teórica en cualquier escenario.",
-            "C: En contextos cosmológicos que involucran agujeros negros.",
-            "D: Para problemas cotidianos en la Tierra donde las masas son pequeñas."
+            "A: recus ar a Vargas Llosa por erigir a<Pzarro> Pizarro como símbolo de la “peruanidad”.",
+            "B: condenar a la modernidad por implicar dos etapas: colonización y progreso.",
+            "C: criticar a Mario Vargas Llosa por su obstinada defensa de la cultura occidental.",
+            "D: cuestionar la se sgada concepción de modernidad de Mario Vargas Llosa.",
+            "E: rechazar la idea de que la modernidad implique invisibilizar la colonización."
         ],
         "label": "D",
-        "rationale": "El texto afirma que para 'objetos de masa relativamente pequeña como los que encontramos en la Tierra', las fórmulas de Newton son 'extremadamente precisas y más sencillas de calcular', lo que las hace preferibles en ese contexto.",
+        "rationale": "En el texto, el autor asume una postura crítica con respecto a la concepción de modernidad de Vargas Llosa, a quien acusa de invisibilizar las consecuencias “negativas” y destacar las “positivas” de la modernidad.",
         "metadata": {
             "attacks": [
                 "sentence_shuffling"
             ],
-            "intensity": "low"
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
         },
         "results": {},
         "validation": {}
     },
     {
-        "id": "005",
+        "id": "1108",
         "task": "mcq",
-        "context": "La inflación es un aumento generalizado y sostenido de los precios de bienes y servicios en una economía durante un período de tiempo. Cuando el nivel general de precios sube, con cada unidad de moneda se adquieren menos bienes y servicios. Una medida frecuente de la inflación es el Índice de Precios al Consumidor (IPC). Es decir, la inflación refleja la disminución del poder adquisitivo de la moneda.",
-        "question": "¿Qué indica un aumento sostenido de la inflación?",
+        "context": "Cuando se aplica la ley einsteniana al cálculo de las órbitas de los planetas y satélites se obtiene, muy aproximadamente, el mismo resultado que con la ley de Newton. Si no fuera así, la ley no podría ser verdadera, ya que las consecuencias deducidas de la ley newtoniana han sido verificadas casi exactamente por la observación. Cuando en 1915 publicó Einstein por primera vez su nueva ley, había un solo hecho empírico para mostrar la superioridad de su teoría sobre la de Newton: el perihelio de Mercurio. Este planeta, como los demás, se mueve alrededor del Sol en una elipse, uno de cuyos focos está en el astro central. El punto de máximo acercamiento se denomina “perihelio”. En algunos puntos de su órbita, se encuentra más cerca del Sol que en otros. Ahora bien, se había descubierto que el movimiento efectuado por Mercurio para pasar de un perihelio al siguiente no es exactamente el mismo, sino un poco más de amplio que el anterior. La diferencia es muy pequeña: 42 segundos en un siglo. Es decir, en cada año el planeta termina su revolución completa medio segundo de arco antes. Esta diferencia tan pequeña con respecto a los cálculos de la teoría newtoniana confundió a los astrónomos. En verdad, se había calculado un cierto efecto, a causa de las perturbaciones causadas de Mercurio por los otros planetas, pero esta pequeña diferencia que se advertía en la órbita era el residuo que quedaba después de tomar en cuenta tales perturbaciones. La teoría de Einstein explicó tanto la existencia de este residuo en Mercurio como su ausencia e n los otros planetas (en los que también existe; pero es demasiado pequeño para ser observado) esta era, al principio, la única ventaja empírica sobre la teoría de Newton. Su segundo éxito fue más sensacional. De acuerdo a la opinión ortodoxa, en el vacío la luz debe propagarse rectilíneamente.",
+        "question": "La idea principal del texto aborda",
         "options": [
-            "A: Que el valor de la moneda está aumentando.",
-            "B: Que los salarios de los trabajadores siempre suben al mismo ritmo.",
-            "C: Que el poder adquisitivo de la moneda está disminuyendo.",
-            "D: Que el gobierno ha decidido imprimir menos dinero."
+            "A: el movimiento de los planetas alrededor del Sol en elipsis.",
+            "B: la propagación de la luz en el vacío de la versión ortodoxa.",
+            "C: la superioridad de la teoría Einsteiniana sobre la newtoniana.",
+            "D: las leyes de Newton y Einstein sobre los cuerpos pesados.",
+            "E: la curvatura de la luz deducida de la gravitación de Einstein."
         ],
         "label": "C",
-        "rationale": "El texto define la inflación como un aumento de precios que 'refleja la disminución del poder adquisitivo de la moneda', lo que significa que se pueden comprar menos cosas con la misma cantidad de dinero.",
+        "rationale": "La contrastación explicada en el texto dicen más de la teoría de Einstein que la de Newton, por eso es preferible a la otra y superior.",
         "metadata": {
             "attacks": [
                 "sentence_shuffling"
             ],
-            "intensity": "low"
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
         },
         "results": {},
         "validation": {}
     },
     {
-        "id": "006",
+        "id": "1118",
         "task": "mcq",
-        "context": "Este proceso requiere dióxido de carbono (CO2) y agua (H2O), y libera oxígeno (O2) como subproducto. La fotosíntesis es el proceso mediante el cual las plantas verdes convierten la energía luminosa en energía química, almacenada como glucosa. La clorofila, el pigmento que da a las plantas su color verde, es crucial para absorber la luz solar.",
-        "question": "¿Cuál de los siguientes es un subproducto liberado durante la fotosíntesis, y no un requisito?",
+        "context": "(«LA VERDAD DE LAS MENTIRAS» DE MARIO VARGAS LLOSA) Las mentiras de las novelas no son nunca gratuitas: llenan las insuficiencias de la vida. Por eso, cuando la vida parece plena y absoluta y, gracias a una fe que todo lo justifica y absorbe. Los hombres se conforman con su destino, las novelas no suelen cumplir servicio alguno. Las culturas religiosas producen poesía, teatro, rara ve grandes hace falta creer en algo ,donde la visión unitaria, confiada y absoluta ha sido sustituida por una visión resquebrajada y una incertidumbre creciente sobre el mundo en que se vive y el trasmundo. Cuando la cultura religiosa entra en crisis, la vida parece escurrirse de los esquemas, dogmas, preceptos que la sujetaban y se vuelve caos: ese es el momento privilegiado para la ficción. Además de amoralidad, en las entrañas de las novelas anida cierto escepticismo. Sus órdenes la sujetaban y se vuelve caos: ese es el momento privilegiado para la ficción. Sus órdenes artificiales proporcionan refugio, seguridad, y en ellos se despliegan, libremente, aquellos apetitos y temores que la vida real incita y no alcanza a saciar o conjurar. La ficción es un sucedáneo transitorio de la vida. El regreso a la realidad es siempre un empobrecimiento brutal: la comprobación de que somos menos de lo que soñamos. Lo que quiere decir que, a la vez que aplacan transitoriamente la insatisfacción humana, las ficciones también la azuzan, espoleando los deseos y la imaginación. Los inquisidores españoles entendieron el peligro. Vivir las vidas que uno no vive es fuente de ansiedad, un desajuste con la existencia que puede tornarse rebeldía, actitud indócil frente a lo establecido. Es comprensible, por ello, que los regímenes que aspiran a controlar totalmente la vida, desconfíen de las ficciones y las sometan a censuras. Salir de sí mismo, ser otro, aunque sea ilusoriamente, es una manera de ser menos esclavo y de experimentar los riesgos de la libertad.",
+        "question": "El tema central del texto es",
         "options": [
-            "A: Glucosa",
-            "B: Dióxido de carbono",
-            "C: Oxígeno",
-            "D: Energía luminosa"
+            "A: la dicotomía realidad -ficción en el seno de la obra literaria y sus consecuencias.",
+            "B: el espíritu inquisidor de quienes sancionan las mentiras literarias injustificadamente.",
+            "C: la necesidad de mentir en las obras de ficción con la finalidad de generar rebeliones.",
+            "D: la religiosidad de las sociedades que carecen de creación literaria novelesca.",
+            "E: las novelas y las mentiras como mecanismo recreativo de la vida de las personas."
         ],
-        "label": "C",
-        "rationale": "El texto establece claramente que el proceso 'libera oxígeno (O2) como subproducto', mientras que el dióxido de carbono y la energía luminosa son requisitos.",
+        "label": "E",
+        "rationale": "SOLUCIÓN: E. Mario Vargas Llosa desarrolla en este texto la capacidad de la novela para alimentar la insatisfacción en las novelas; de esta forma, el lector, de forma pasajera, se permite rebelarse ante la monotonía de su vida.",
         "metadata": {
             "attacks": [
                 "sentence_shuffling"
             ],
-            "intensity": "low"
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
         },
         "results": {},
         "validation": {}
     },
     {
-        "id": "007",
+        "id": "1130",
         "task": "mcq",
-        "context": "Aunque la dictadura de Julio César marcó un punto de inflexión, fue su hijo adoptivo, Octavio (más tarde Augusto), quien formalmente puso fin a la República al establecer el Principado, un sistema en el que el emperador ostentaba el poder supremo bajo la apariencia de las tradiciones republicanas. La transición de la República Romana al Imperio no fue un evento único, sino un largo proceso.",
-        "question": "¿A quién se le atribuye el fin formal de la República Romana y el establecimiento de la nueva forma de gobierno?",
+        "context": "Luego del profundo cambio de época acontecido a finales del siglo XX, la economía y la sociedad planetaria siguen buscando un equilibrio esquivo. Convergen hechos notables como la caída del socialismo real, el capitalismo en China, el notable aumento de la producción y el comercio y el deslizamiento de las manufacturas hacia países emergentes. Especialmente destacable es el alineamiento de las estrategias nacionales hacia sistemas más democráticos, más liberales y de mayor conformidad con el mercado. Por más que siempre parece poco, es destacable el progreso registrado. Hobsbawm señala que hace 80 años existían solamente 12 democracias en el mundo. Cuando coinciden cambios semejantes, las piezas demoran en ajustarse. La inestabilidad se prolonga como los temblores que siguen al terremoto. El desempleo y la debilidad de sus inversiones se asocian al éxito manufacturero de China. El primer mundo arrastra una prolongada recesión. No obstante, Occidente mantiene el liderazgo en la innovación y el conocimiento, lo cual alienta su recuperación aunque por el camino quedarán algunos blasones. África es el nuevo blanco de las ambiciones puestas en los recursos naturales y se sumará al rol de América en la oferta de alimentos, energía y minerales. En nuestra comarca, a Chile, Colombia y Perú -que presentan un proyecto abierto al mundo desde el liberalismo - les seguirá yendo mejor que a Venezuela, Argentina o Brasil que defienden un ideal que mira al pasado. El Mercosur nos encarceló y la ideología nos paraliza. Renunciamos a un mundo abierto que es el único que premia a los países pequeños. Contra toda evidencia, confiamos en la decepcionante tutela brasileña. Nuestro país también inicia una inflexión en su historia. Las tendencias mundiales nos favorecieron pero no obtuvimos el fruto posible. Durante 10 años la economía creció como nunca y más que casi todos. Sin embargo, no avanzamos en el logro de los éxitos más valiosos que caracterizan a los países de primera. Somos más prósperos pero más subdesarrollados. Una sociedad más conflictiva, incapaz de mejorar la gestión de los asuntos públicos que hacen a la convivencia. Algo de eso registra el \"Informe de desarrollo humano\" de la ONU. Somos el país del continente que menos ha progresado en el índice que combina un conjunto de indicadores económicos y sociales. Coincide una explosión del gasto público con los peores resultados. Un derroche colosal. En el empeño por elevar el gasto, se ha venido afectando en forma creciente la producción de bienes transables los cuales son la medida de nuestra competitividad en el mundo. Desde 2008, el PIB de la industria y el agro sumados no crecen (solo 0,4% anual). Solamente crecen los servicios que no compiten en el mundo. En los años que vienen todo será más difícil. Bajarán los precios de exportación y se debilitará la inversión extranjera. La inercia del gasto y los salarios será difícil de frenar mientras la inflación no cede. El atraso cambiario alcanzará niveles desconocidos. En este contexto, el gobierno opta por aumentar impuestos. Más grave aún, crea los impuestos que se descartaron cuando se trató la reforma tributaria: impuestos a la tierra y al patrimonio. Los tributos que desalientan la inversión y el crecimiento de los sectores más competitivos y con mayor potencial de crecer en condiciones adversas. Es la consigna de una revolución achacosa que sigue pensando que la riqueza no se crea, sino que solamente hay que repartida.",
+        "question": "Se colige que la intención del autor es",
         "options": [
-            "A: A Julio César, al declararse dictador vitalicio.",
-            "B: Al Senado Romano, al transferir voluntariamente sus poderes.",
-            "C: A Octavio (Augusto), al crear el sistema del Principado.",
-            "D: A Marco Antonio, tras su derrota en la batalla de Actium."
-        ],
-        "label": "C",
-        "rationale": "El texto indica explícitamente que Octavio (Augusto) 'formalmente puso fin a la República al establecer el Principado'.",
-        "metadata": {
-            "attacks": [
-                "sentence_shuffling"
-            ],
-            "intensity": "low"
-        },
-        "results": {},
-        "validation": {}
-    },
-    {
-        "id": "008",
-        "task": "mcq",
-        "context": "Un mensaje cifrado con la clave pública de un destinatario solo puede ser descifrado con la clave privada correspondiente de ese mismo destinatario. El cifrado asimétrico utiliza un par de claves para la encriptación: una clave pública, que se puede compartir libremente, y una clave privada, que debe mantenerse en secreto. Esto garantiza la confidencialidad.",
-        "question": "Si Ana quiere enviar un mensaje seguro a Carlos usando cifrado asimétrico, ¿qué clave debe usar para cifrar el mensaje?",
-        "options": [
-            "A: La clave privada de Ana.",
-            "B: La clave pública de Carlos.",
-            "C: La clave pública de Ana.",
-            "D: La clave privada de Carlos."
+            "A: comparar la situación de su país con la situación de Venezuela, Argentina y Brasil.",
+            "B: criticar al sistema económico de su país que no es liberal y que tiene resultados negativos.",
+            "C: evaluar lo desastroso que fue para su país seguir bajo los lineamientos de Brasil.",
+            "D: establecer el mejor modelo económico que deben seguir los países de Latinoamérica.",
+            "E: explicar cómo es posible que su país crezca y a pesar de ello sea subdesarrollado."
         ],
         "label": "B",
-        "rationale": "Para que solo Carlos pueda leer el mensaje, este debe ser cifrado con su clave pública. De esta manera, solo él, con su clave privada correspondiente, podrá descifrarlo.",
+        "rationale": "El autor analiza la situación de su país que se resume en crecimiento y subdesarrollo y critica el modelo seguido que no es un modelo liberal abierto al mundo, que no busca crear riqueza sino solo repartirla.",
         "metadata": {
             "attacks": [
                 "sentence_shuffling"
             ],
-            "intensity": "low"
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
         },
         "results": {},
         "validation": {}
     },
     {
-        "id": "009",
+        "id": "1138",
         "task": "mcq",
-        "context": "Este proceso, llamado metamorfismo, no derrite la roca original, sino que transforma su mineralogía, textura y estructura química en un estado sólido. Las rocas metamórficas se forman a partir de rocas preexistentes (ígneas, sedimentarias u otras rocas metamórficas) que han sido alteradas por el calor, la presión o la acción de fluidos químicamente activos.",
-        "question": "¿Qué condición es fundamental en el proceso de metamorfismo según el texto?",
+        "context": "Hasta que apareció Un mundo para Julius, Al fredo Bryce Echenique era un autor conocido solo por círculos bastante reducidos. La obra de Bryce se inició con una familia de cuentos en la que un personaje - Manolo- encarna un conjunto de experiencias más o menos comunes a jóvenes de la pequeña burguesía limeña a partir de la adolescencia, y ejemplifica un aprendizaje de la vida frustrante y enajenante. En esos cuentos, están los gérmenes de Un mundo para Julius :apuntan ya un enfoque personal de la realidad y las direcciones generales del proyecto literario de un autor que tiende a una representación de la vida a través de anécdotas simples, casi triviales, a una representación centrada en essa cotidianidad de universos pequeños pero abiertos a la totalidad del contexto en que se dan. Bien dotado para recrear aspectos de la realidad, Bryce tiene trazado así un amplio cuadro de Lima. El narrador de Un mundo para Julius no se identifica plenamente con nada; es más, interpone un calculado espacio entre su mirada y lo que observa, ejercita un distanciamiento que le confiere la perspectiva que necesita para vera cada uno de los personajes desde los ojos de los demás sin dejar de verlos con los propios. Ese narrador, al carecer de una posición cabalmente asumida, complementa la ambigüedad que también posee Julius, si bien este la debe no solo a su carácter, sino también a su condición infantil: como niño pequeño, Julius no está todavía \"en su sitio\" y esto le permite un activo comercio con la servidumbre, incursionar ingenuamente por mundos que están debajo del suyo, ignorar los linderos que habrá de marcarle en el futuro su clase social. Un mundo para Julius reproduce, con rara imparcialidad, la vida privilegiada de los señores y la precaria de los siervos; compendia la injusticia social en un hogar de familia, simplificante espejo de un sistema económico en cuyo centro se coloca, como una acusación, la perpleja inocencia de Julius, el niño sensible y solitario que va descubriendo una realidad cruel que no comprende pero que aprende con tristeza y pesar. Así, Julius no es solo el protagonista del libro, sino también su instrumento de exploración. Cuadros de costumbres, rápidos y certeros; incisivos esb ozos de la vida en los distintos estratos de Lima -desde las zonas residenciales lujosas hasta las miserables barriadas, pasando por los sectores intermedios emergentes o en deterioro- configuran una sucesión de contrastes semejantes a la que se da en el desfile de los personajes, no por fugaces o simplificados menos nítidos, que pueblan el libro y subrayan la fastuosa frivolidad albergada en el palacio de Julius, en los palacios. En torno de él, la novela crece y abarca un vasto panorama que aspira a representar e l de la sociedad donde su acción se desarrolla. Los dos de Julius, además, sirven para representar cambios en nuestra sociedad, una evolución que no solo se marca en la diversa y aun opuesta semiología de la arquitectura y la decoración que distingue al palacio paterno del construido por Juan Lucas, sino también en las actitudes del personal de servicio doméstico que va reemplazando al antiguo a partir del despido de Vilma, esa manzana arrojada del paraíso.",
+        "question": "Fundamentalmente el texto es una ________de la obra de Alfredo Bryce Un mundo para Julius .",
         "options": [
-            "A: La fusión completa de la roca original para crear magma.",
-            "B: La erosión y deposición de sedimentos en una nueva ubicación.",
-            "C: La alteración de la roca en estado sólido, sin llegar a derretirse.",
-            "D: El enfriamiento y solidificación de la lava en la superficie terrestre."
+            "A: crítica de la visión de la realidad",
+            "B: apología a la estructura narrativa",
+            "C: síntesis del contenido temático",
+            "D: interpretación de índole literaria",
+            "E: crítica de la falta de objetividad"
         ],
-        "label": "C",
-        "rationale": "El texto especifica que el metamorfismo 'no derrite la roca original', sino que la transforma 'en un estado sólido', diferenciándolo de los procesos ígneos.",
+        "label": "D",
+        "rationale": "El texto es fundamentalmente un análisis literario de Un mundo para Julius .",
         "metadata": {
             "attacks": [
                 "sentence_shuffling"
             ],
-            "intensity": "low"
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
         },
         "results": {},
         "validation": {}
     },
     {
-        "id": "010",
+        "id": "1171",
         "task": "mcq",
-        "context": "Las personas muestran esta tendencia cuando seleccionan la información que apoya sus puntos de vista, ignorando la información contradictoria, o cuando interpretan evidencia ambigua como si apoyara sus posturas existentes. El sesgo de confirmación es la tendencia a buscar, interpretar, favorecer y recordar información de una manera que confirma o apoya las creencias o hipótesis preexistentes.",
-        "question": "¿Cómo se manifiesta principalmente el sesgo de confirmación?",
+        "context": "Allá en Cartagena conocen mucho más que en España a don Blas de Lezo y Olabarr ieta (1689- 1741), el ilustre guipuzcoano de Pasajes. Me he pasa do la vida leyendo novelas de aventuras, de modo que pueden creerme: ni Salgari, ni Pérez -Reverte, ni Patrick O’Brian, ni nadie habría sido capaz de inventar peripecias de riesgo y heroísmo como las que protagonizó ese pasaitarra. Los mares no han conocido marino tan intrépido ni estratega tan genial. Era solo un niño (¡12 años!) cuando embarcó por primera vez y un adolescente (17 años) cuando un obús le destrozó la pierna izquierda en una batalla: se la cortaron por debajo de la rodilla, sin anestesia ni una sola queja. Pagando un alto precio, eso sí: tras la pierna perdió un brazo y un ojo. Después, una serie de hechos de armas a cual más glorioso por el Mediterráneo (Génova, Orán…), por el océano Pacífico limpiando de piratas las costas de Perú, por el Caribe… Otros se especializan en disculparse o justificar sus derrotas, él prefirió dedicarse a ganar cuando lo tenía todo en contra. Sus compañeros de travesía, que le habían motejado de joven Patapalo, le llamaban después Medio Hombre tras sus mutilaciones . Era una forma descarnada y ruda de elogiarle, claro, porque todos sabían que en lo que cuenta no hubo nunca hombre más entero que don Blas. Su último destino, siendo ya general de la Armada, fue defender contra los ingleses Cartagena de Indias, la llave de las posesiones españolas en América. La Royal Navy dispuso para el caso la mayor flota que nunca se había visto ni volvió a verse hasta Trafalgar: casi doscientos barcos y treinta mil hombres. Lezo contaba con seis buques y menos de tres mil soldados. Edward Vernon, el almirante inglés, estaba tan convencido de su aplastante superioridad que al primer atisbo favorable en el combate envió noticia a su rey de la victoria en Cartagena. Y este, ni corto ni perezoso, mandó acuñar una moneda conmemorativa en la que se veía a Lezo arrodillado ante su supuesto vencedor, con la leyenda: “La arrogancia de España humillada ante el almirante Vernon”. Tuvo que arrepentirse luego de tanta precipitación, cuando llegaron noticias más fiables: aunque pareciese increíble, Blas de Lezo se las arregló para diezmar a la flota británica, que no volvió a levantar cabeza hasta Trafalgar, y provocó una auténtica matanza entre sus tripulantes. Y eso que no solo tuvo en contra la desproporción de fuerzas, sino también la hostilidad del virrey Sebastián de Eslava, que obstaculizó sus decisiones y después envió a la corte de Madrid informes desfavorables sobre el incómodo subordinado. Lo ha contado noveladamente Pérez -Foncea en El héroe del Caribe y antes el senador colombiano Pablo Victoria Vilches en El día que España derrotó a Inglaterra.",
+        "question": "La palabra MOTEJADO alude",
         "options": [
-            "A: Dando el mismo peso a toda la evidencia disponible.",
-            "B: Buscando activamente evidencia que pueda refutar las propias creencias.",
-            "C: Favoreciendo la información que se alinea con las creencias actuales.",
-            "D: Cambiando de opinión fácilmente ante nueva evidencia."
+            "A: al particular modo de hablar del insigne don Blas de Lezo.",
+            "B: a los diversos errores en la manera de hablar del general.",
+            "C: a las múltiples injurias dirigidas en contra de Blas de Lezo.",
+            "D: al denuesto de don Blas mediante algunos improperios.",
+            "E: al uso de epítetos para caracterizar a don Blas de Lezo."
         ],
-        "label": "C",
-        "rationale": "La definición central del sesgo de confirmación, según el texto, es la tendencia a 'favorecer y recordar información de una manera que confirma o apoya las creencias... preexistentes'.",
+        "label": "E",
+        "rationale": "Los compañeros de travesía de Blas de Lezo lo llamaban Patapalo y Medio Hombre.",
         "metadata": {
             "attacks": [
                 "sentence_shuffling"
             ],
-            "intensity": "low"
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
+        },
+        "results": {},
+        "validation": {}
+    },
+    {
+        "id": "1178",
+        "task": "mcq",
+        "context": "Para algunos, siguiendo a Foucault, la locura no es sino una forma de interacción social impregnada por la cultura del medio en que aparece. Hacer la historia de la locura supone mostrar la evolución del clima emocional y cultural en que esta surge, los criterios que la definen y los contextos sociales, morales, jurídicos y médicos desde donde se dan respuestas institucionales. Forzar a los forzados, encarcelar a los sometidos, excluir a los ausentes o bien humanizar la locura modificando el estatuto de los locos. La locura es desorden, contraorden. La historia de la locura así entendida forma parte de la historia de la gestión de las pobrezas de cada época y el problema de tutelar a los locos consiste en ajustar la dosis de orden o de desorden que es capaz de tolerar una sociedad determinada. La suspensión temporal o funcional de las normas (fiesta, carnaval, borrachera, payasada) entra en la normalidad; es el no regreso, lo problemático: cada cultura sitúa su horizonte y su «incurable». Pero la locura es también una vocación imperiosa, un sacrificio sin sentido, una desintegración, una catástrofe entre el entusiasmo y la apatía. Esclavo de las potencias (interiores o exteriores) que provocan su exclusión (voluntaria o involuntaria), el loco puede reivindicar su locura, o pedir que se le libere de ella o convertirla en una pasión activa, un heroísmo tambaleante o un exilio. De aquí la extrema ambigüedad frente a los locos de culturas y sociedades diversas. Expulsados o exhibidos como una imagen de lo que a todos acecha, también se les permite la palabra donde otros callan, como los bufones de reyes y emperadores. Aunque la idea de la locura en Occidente haya sufrido importantes variaciones, nunca ha dejado de advertirse su relación con la razón. Como una de las propias formas de la razón, la peor locura del hombre es no saber qué parte de locura es la suya. La locura es lo «otro» de la razón, una alteridad cuya relación ha sido cambiante según las épocas. Rostro grotesco, como el cetro de Momo, que aún mantiene un aire tenebroso, errante, lunático, un deseo fatal, que la razón intenta vencer pero sobre el que no hay victoria definitiva.",
+        "question": "El vocablo ACECHA sugiere que los seres humanos",
+        "options": [
+            "A: somos, sin excepción, pasibles de sufrir locura.",
+            "B: debemos enfrentar con entereza las adversidades .",
+            "C: ajustamos las dosis de orden para tutelar a los locos .",
+            "D: seremos excluidos, inexorablemente, de la sociedad.",
+            "E: asumimos que la locura es una expresión de la razón."
+        ],
+        "label": "A",
+        "rationale": "SOL. Todos los seres humanos estamos expuestos a padecer locura.",
+        "metadata": {
+            "attacks": [
+                "sentence_shuffling"
+            ],
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
+        },
+        "results": {},
+        "validation": {}
+    },
+    {
+        "id": "1223",
+        "task": "mcq",
+        "context": "No sucederá mañana, pasa hoy. La increíble impresora 3D ya está en el mercado para cambiar el mundo. Dicho en simple, son máquinas que fabrican cosas. Como las impresoras Replicator de la empresa MakerBot ,que «imprimen » diseños que se programan en el computador. Tal como lee, se baja el software con el diseño de, por ejemplo, una pequeña lámpara de escritorio, y esta máquina la fabrica usando una fibra de plástico como insumo. Gratis y sin intermediarios. Es lo que se llama diseño asistido por computadora, una tecnología que tiene su prehistoria en los años 80, su desarrollo a fines de los 90 y su industrialización masiva desde 2009, cuando salió la primera MakerBot al mercado. A la fecha han vendido 15 mil impresoras en todo el mundo; la más reciente es la Replicator 2X que, a diferencia de sus predecesoras, utiliza bioplástico renovable e imprime en dos colores. Si suena revolucionario es porque lo es; hablamos de tener en casa, por un precio que bordea los tres mil dólares, una máquina que fabrica cosas. No es broma. Claro que para Bre Pettis, uno de sus creadores, el horizonte es aún más lejano, como dijo en su presentación para la feria CES de Las Vegas en enero pasado: «Creo que en el futuro estaremos construyendo la base lunar con MakerBots . Para allá vamos ». Al infinito y más allá.",
+        "question": "¿Cuál es la idea principal del texto?",
+        "options": [
+            "A: Las impresoras 3D más recientes utilizan solamente bioplástico renovable.",
+            "B: A la fecha, se han vendido en todo el mundo cerca de quince mil impresoras 3D.",
+            "C: La impresora 3D fabrica cosas, por lo que es tecnológicamente revolucionaria.",
+            "D: En el futuro se construirán bases lunares utilizando únicamente impresoras 3D.",
+            "E: Las impresoras 3D han sufrido una evolución a lo largo de varias décadas."
+        ],
+        "label": "C",
+        "rationale": "Las impresoras 3D son máquinas que fabrican cosas y que tienen un uso promisorio en tiempos venideros, por estas razones, esa tecnología es revolucionaria.",
+        "metadata": {
+            "attacks": [
+                "sentence_shuffling"
+            ],
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
+        },
+        "results": {},
+        "validation": {}
+    },
+    {
+        "id": "1356",
+        "task": "mcq",
+        "context": "Existen especies que requieren a los machos, pero no precisamente para lo que la mayoría de las hembras de otras especies los requerirían. Tal es el caso de las molly amazónicas. El ADN del macho no se expresa: las crías son una copia al carbón de la madre. Estos diminutos peces de México y el suroeste de Estados Unidos son ginogenéticos, es decir, clones femeninos naturales que necesitan aparease con machos de una o dos especies estrechamente emparentadas con estos, cuyo esperma pr ecipita el desarrollo embrionario. El esperma sólo sirve para iniciar el proceso. Entonces, ¿qué ganan estos machos sino pueden transmitir sus genes? Resulta que el apareamient o con las Molly les hace parecer más adecuados para la paternidad, desde el punto de vista de las hembras de la especie a la que pertenecen.",
+        "question": "Se colige del texto las molly amazónicas",
+        "options": [
+            "A: no pueden trasladar sus genes.",
+            "B: liberan el esperma azarosamente.",
+            "C: carecen de especímenes machos.",
+            "D: buscan los machos ginogenéticos.",
+            "E: expresan su ADN sólo en machos."
+        ],
+        "label": "C",
+        "rationale": "Si las molly son clones de la madre, y requieren el esperma de otras especies, se deduce que no existen especímenes machos.",
+        "metadata": {
+            "attacks": [
+                "sentence_shuffling"
+            ],
+            "intensity": "low",
+            "attacker_model": "groq/llama-3.3-70b-versatile",
+            "generation_attempts": 1,
+            "attack_validation": {
+                "structural_violations": [],
+                "semantic": null,
+                "valid": true,
+                "failures": []
+            },
+            "attack_valid": true
         },
         "results": {},
         "validation": {}
