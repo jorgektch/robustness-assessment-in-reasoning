@@ -1,5 +1,4 @@
 import random
-import re
 import sys
 import os
 from typing import Optional
@@ -9,6 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from core.base_attack import BaseAttack
 from core.models import VerbalTask, IntensityLevel
 from core.llm_client import LLMClient
+from core.utils import split_sentences
 
 
 class SentenceShuffling(BaseAttack):
@@ -18,7 +18,7 @@ class SentenceShuffling(BaseAttack):
 
     def apply(self, task: VerbalTask, intensity: IntensityLevel) -> VerbalTask:
         attacked = task.model_copy(deep=True)
-        sentences = re.split(r"(?<=[.!?])\s+", task.context.strip())
+        sentences = split_sentences(task.context)
 
         if len(sentences) <= 1:
             return attacked

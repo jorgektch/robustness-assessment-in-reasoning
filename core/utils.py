@@ -4,6 +4,12 @@ import re
 from typing import List, Optional
 
 
+def split_sentences(text: str) -> List[str]:
+    """Criterio único de división en oraciones para todo el proyecto
+    (inserción de ataques, shuffling y checks estructurales del validador)."""
+    return [s.strip() for s in re.split(r"(?<=[.!?])\s+", (text or "").strip()) if s.strip()]
+
+
 def extract_single_sentence(text: str) -> str:
     """
     Extrae de forma segura una sola oración.
@@ -118,23 +124,27 @@ def insert_distractions(context: str, distractions: List[str]) -> str:
     """
     Inserta oraciones en posiciones aleatorias del contexto (nunca al inicio),
     preservando todas las oraciones originales, su puntuación y su orden relativo.
+    Inserta TODAS las distracciones recibidas: si hay más distracciones que
+    huecos disponibles, varias comparten posición (quedan adyacentes) sin
+    perder ninguna.
     """
-    sentences = [s for s in re.split(r"(?<=[.!?])\s+", context.strip()) if s]
+    sentences = split_sentences(context)
     if not sentences:
         sentences = [context.strip()]
     if sentences[-1] and sentences[-1][-1] not in ".!?":
         sentences[-1] += "."
 
     max_pos = len(sentences)
-    num_to_insert = min(len(distractions), max_pos)
-    distractions = distractions[:num_to_insert]
-
-    positions = random.sample(range(1, max_pos + 1), num_to_insert)
+    num_to_insert = len(distractions)
+    if num_to_insert <= max_pos:
+        positions = random.sample(range(1, max_pos + 1), num_to_insert)
+    else:
+        positions = random.choices(range(1, max_pos + 1), k=num_to_insert)
     positions.sort()
 
     for i, distraction in enumerate(reversed(distractions)):
         pos = positions[len(positions) - 1 - i]
-        if not distraction.endswith("."):
+        if distraction and distraction[-1] not in ".!?":
             distraction += "."
         sentences.insert(pos, distraction)
 

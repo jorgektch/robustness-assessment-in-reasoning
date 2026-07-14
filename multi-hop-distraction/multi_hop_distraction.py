@@ -57,7 +57,7 @@ Genera exactamente {num_distractions} oraciones:
                     response = response.split("\n", 1)[1]
                 response = response.strip()
 
-            distractions = json.loads(response)
+            distractions = self._normalize_distractions(json.loads(response))
             attacked.context = insert_distractions(task.context, distractions)
             attacked.metadata["attack"] = "multi_hop_distraction"
             attacked.metadata["intensity"] = intensity.value
@@ -74,6 +74,20 @@ Genera exactamente {num_distractions} oraciones:
             attacked.metadata["error_details"] = str(e)
 
         return attacked
+
+    @staticmethod
+    def _normalize_distractions(raw: list) -> list:
+        """Deja cada distracción exactamente como se insertará en el contexto,
+        para que metadata['distractions_added'] coincida cadena a cadena."""
+        normalized = []
+        for item in raw:
+            sentence = " ".join(str(item).split()).strip()
+            if not sentence:
+                continue
+            if sentence[-1] not in ".!?":
+                sentence += "."
+            normalized.append(sentence)
+        return normalized
 
     def _validate_task(self, original: VerbalTask, attacked: VerbalTask) -> bool:
         return (

@@ -1,9 +1,9 @@
 import json
-import re
 from typing import Any, Dict, List, Optional
 
 from .llm_client import LLMClient
 from .models import IntensityLevel, VerbalTask
+from .utils import split_sentences
 
 # Ataques que modifican el contexto añadiendo oraciones
 CONTEXT_ATTACKS = {"isi", "cni", "mhd", "phm"}
@@ -53,10 +53,6 @@ ATTACK_RUBRICS = {
         "La opción correcta debe permanecer intacta y seguir siendo la única respuesta correcta."
     ),
 }
-
-
-def _split_sentences(text: str) -> List[str]:
-    return [s.strip() for s in re.split(r"(?<=[.!?])\s+", (text or "").strip()) if s.strip()]
 
 
 def _intensity_from_metadata(attacked: VerbalTask) -> Optional[IntensityLevel]:
@@ -111,8 +107,8 @@ def structural_checks(original: VerbalTask, attacked: VerbalTask, attack_key: st
         if attacked.options != original.options:
             violations.append("las options fueron modificadas en un ataque de contexto")
 
-        original_sentences = _split_sentences(original.context)
-        attacked_sentences = _split_sentences(attacked.context)
+        original_sentences = split_sentences(original.context)
+        attacked_sentences = split_sentences(attacked.context)
 
         if attack_key == "mhd":
             if not _is_subsequence(original_sentences, attacked_sentences):
@@ -169,8 +165,8 @@ def structural_checks(original: VerbalTask, attacked: VerbalTask, attack_key: st
                         )
 
     elif attack_key == "ss":
-        original_sentences = _split_sentences(original.context)
-        attacked_sentences = _split_sentences(attacked.context)
+        original_sentences = split_sentences(original.context)
+        attacked_sentences = split_sentences(attacked.context)
         if sorted(original_sentences) != sorted(attacked_sentences):
             violations.append("el multiset de oraciones no coincide con el original")
         elif attacked_sentences == original_sentences:
